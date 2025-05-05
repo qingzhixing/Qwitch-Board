@@ -7,7 +7,8 @@
 	"settings": {
 		"files.associations": {
 			"*.nasm": "nasm",
-			"random": "cpp"
+			"random": "cpp",
+			"cmath": "cpp"
 		}
 	}
 }
