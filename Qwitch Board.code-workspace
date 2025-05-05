@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.nasm": "nasm",
+			"random": "cpp"
+		}
+	}
+}
