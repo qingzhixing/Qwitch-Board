@@ -2,6 +2,7 @@
 #include <U8g2lib.h>
 
 #include "qwitch_bitmap.h"
+#include <keyboard.h>
 
 U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* clock=*/SCL, /* data=*/SDA);
 
@@ -24,11 +25,15 @@ void setup()
 
   u8g2.sendBuffer();
 
+  keyboard_init();
+  Serial.begin(115200);
+
   last_move_time_ms = millis();
 }
 
 void loop()
 {
+  Serial.println(digitalRead(KEY_A) == HIGH ? "HIGH" : "LOW");
   long current_time_ms = millis();
   if (current_time_ms - last_move_time_ms >= bitmap_move_interval_ms)
   {

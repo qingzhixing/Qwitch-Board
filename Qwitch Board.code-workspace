@@ -8,7 +8,10 @@
 		"files.associations": {
 			"*.nasm": "nasm",
 			"random": "cpp",
-			"cmath": "cpp"
+			"cmath": "cpp",
+			"keyboard.h": "c",
+			"q_keyboard.h": "c",
+			"arduino.h": "c"
 		}
 	}
 }
