@@ -12,7 +12,12 @@ void set_display_function(DisplayFunction function, InitializeFunction initializ
 // 调用之前请先进行好初始化
 void display_one_frame(void);
 
+// Home Page
 void home_page_function(void);
 void home_page_initialize(void);
+
+// Keyboard Test Page
+void keyboard_test_page_function(void);
+void keyboard_test_page_initialize(void);
 
 #endif // !DISPLAY_PAGE_H
