@@ -8,12 +8,12 @@ static std::vector<PageDisplay> page_displays;
 
 #define PAGE_AMOUNT (page_displays.size())
 
-static int current_page = 0;
-static bool hide_info = false;
-
-static long last_interacted_tick_ms = 0;
 // 连续交互间隔
 static long interact_interval_ms = 200;
+static long last_interacted_tick_ms = 0;
+static int current_page = 0;
+static bool hide_info = true;
+static bool need_update_select_screen = false;
 
 void register_page_display(PageDisplay &&page_display)
 {
@@ -32,11 +32,13 @@ inline void update_last_interacted_tick()
 
 void display_page_select_info(void)
 {
-
-	oled.clearDisplay();
 	oled.clearBuffer();
 
-	oled.drawStr(30, 10, "Page Select :)");
+	oled.drawBox(0, 0, 128, 16);
+	oled.setDrawColor(0);
+	oled.drawStr(30, 12, "Select Info");
+	oled.setDrawColor(1);
+
 	oled.drawStr(5, 31, "Press A to select ");
 	oled.drawStr(5, 47, "Press L/R to switch");
 	oled.drawStr(5, 63, "Press B to on/off info");
@@ -47,26 +49,24 @@ void display_page_select_info(void)
 
 void page_select_initialize(void)
 {
-	display_page_select_info();
 	update_last_interacted_tick();
 
 	// 冷却500ms
 	last_interacted_tick_ms += 500;
+
+	need_update_select_screen = true;
 }
 
 void page_select_function(void)
 {
 	if (page_displays.empty())
 	{
-		oled.clearDisplay();
 		oled.clearBuffer();
 		oled.drawStr(30, 10, "!!ERROR!!");
 		oled.drawStr(5, 31, "No registered page!");
 		oled.sendBuffer();
 		return;
 	}
-
-	bool need_update_select_screen = false;
 
 	if (IS_KEY_PRESSING(KEY_B) && can_interact())
 	{
@@ -78,7 +78,6 @@ void page_select_function(void)
 		}
 		else
 		{
-			oled.clearDisplay();
 			oled.clearBuffer();
 			oled.sendBuffer();
 
@@ -112,11 +111,14 @@ void page_select_function(void)
 		auto &page_display = page_displays[current_page];
 		snprintf(display_str, sizeof(display_str), "@[%s]", page_display.page_name);
 
+		oled.clearBuffer();
+		oled.drawBox(10, 21, 108, 16);
 		oled.setDrawColor(0);
-		oled.drawBox(0, 21, 128, 16);
+		oled.drawStr(20, 33, display_str);
 		oled.setDrawColor(1);
-		oled.drawStr(20, 31, display_str);
+
 		oled.drawStr(15, 47, "Press A to enter");
+		oled.drawStr(15, 63, "Press B to info");
 		oled.sendBuffer();
 	}
 }

@@ -20,63 +20,66 @@ void keyboard_test_page_function(void)
 	bool B = digitalRead(KEY_B) == KEY_PRESSING;
 
 	oled.clearBuffer();
-	oled.drawBitmap(0, 0, 16, 16, kbd_test_bitmap);
+	oled.drawBox(0, 0, 128, 16);
+	oled.setDrawColor(0);
+	oled.drawStr(20, 12, "Keyboard Test");
+	oled.setDrawColor(1);
 
 	// 画圆表示按键状态
 	// Up Down Left Right
 	if (UP)
 	{
-		oled.drawDisc(31, 23, 8);
+		oled.drawDisc(31, 28, 5);
 	}
 	else
 	{
-		oled.drawCircle(31, 23, 8);
+		oled.drawCircle(31, 28, 5);
 	}
 
 	if (DOWN)
 	{
-		oled.drawDisc(31, 55, 8);
+		oled.drawDisc(31, 50, 5);
 	}
 	else
 	{
-		oled.drawCircle(31, 55, 8);
+		oled.drawCircle(31, 50, 5);
 	}
 
 	if (LEFT)
 	{
-		oled.drawDisc(15, 39, 8);
+		oled.drawDisc(20, 39, 5);
 	}
 	else
 	{
-		oled.drawCircle(15, 39, 8);
+		oled.drawCircle(20, 39, 5);
 	}
 
 	if (RIGHT)
 	{
-		oled.drawDisc(47, 39, 8);
+		oled.drawDisc(42, 39, 5);
 	}
 	else
 	{
-		oled.drawCircle(47, 39, 8);
+		oled.drawCircle(42, 39, 5);
 	}
 
 	// A B
 	if (A)
 	{
-		oled.drawDisc(87, 23, 8);
+		oled.drawDisc(90, 30, 5);
 	}
 	else
 	{
-		oled.drawCircle(87, 23, 8);
+		oled.drawCircle(90, 30, 5);
 	}
 
 	if (B)
 	{
-		oled.drawDisc(111, 39, 8);
+		oled.drawDisc(105, 42, 5);
 	}
 	else
 	{
-		oled.drawCircle(111, 39, 8);
+		oled.drawCircle(105, 42, 5);
 	}
 
 	oled.sendBuffer();

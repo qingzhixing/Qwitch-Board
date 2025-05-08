@@ -10,13 +10,6 @@ static long current_bitmap_x = 32;
 void home_page_initialize(void)
 {
 	last_move_time_ms = millis();
-
-	oled.clearBuffer();
-	oled.drawBitmap(0, 0, 16, 16, qwitch_bitmap);
-	oled.drawBitmap(current_bitmap_x, 16, 12, 32, qzx_bitmap);
-	oled.drawBitmap(0, 48, 14, 16, board_bitmap);
-
-	oled.sendBuffer();
 }
 
 void home_page_function(void)
@@ -36,10 +29,11 @@ void home_page_function(void)
 			current_bitmap_x = 0;
 			move_direction_x = -move_direction_x;
 		}
-		oled.setDrawColor(0);
-		oled.drawBox(current_bitmap_x, 16, 12 * 8, 32);
-		oled.setDrawColor(1);
+		oled.clearBuffer();
+		oled.drawBitmap(0, 0, 16, 16, qwitch_bitmap);
 		oled.drawBitmap(current_bitmap_x, 16, 12, 32, qzx_bitmap);
+		oled.drawBitmap(0, 48, 14, 16, board_bitmap);
+
 		oled.sendBuffer();
 	}
 }
