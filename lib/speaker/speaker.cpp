@@ -104,7 +104,6 @@ void toggle_speaker()
 	{
 		speaker_on();
 	}
-	_is_speaker_on = !_is_speaker_on;
 }
 
 void speaker_init()

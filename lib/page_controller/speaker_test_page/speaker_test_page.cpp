@@ -8,7 +8,7 @@ static Interacter interacter(100);
 
 void speaker_test_page_initialize()
 {
-	interacter.add_cooldown(1000);
+	interacter.add_cooldown(300);
 }
 
 static void display_speaker_info()

@@ -41,7 +41,7 @@ void page_select_initialize(void)
 	interacter.update_interaction_tick();
 
 	// 冷却500ms
-	interacter.add_cooldown(500);
+	interacter.add_cooldown(300);
 
 	need_update_select_screen = true;
 }

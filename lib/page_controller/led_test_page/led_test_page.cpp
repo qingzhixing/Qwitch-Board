@@ -9,7 +9,7 @@ static Interacter interacter(200);
 void led_test_page_init()
 {
 	interacter.update_interaction_tick();
-	interacter.add_cooldown(500);
+	interacter.add_cooldown(300);
 }
 
 static void interaction_handler()
