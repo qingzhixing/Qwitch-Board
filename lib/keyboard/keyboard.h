@@ -12,8 +12,11 @@
 #define KEY_A (33U)
 #define KEY_B (32U)
 
-#define KEY_PRESSED HIGH
-#define KEY_RELEASED LOW
+#define KEY_PRESSING HIGH
+#define KEY_RELEASING LOW
+
+#define IS_KEY_PRESSING(key) (digitalRead(key) == KEY_PRESSING)
+#define IS_KEY_RELEASING(key) (digitalRead(key) == KEY_RELEASING)
 
 void keyboard_init();
 

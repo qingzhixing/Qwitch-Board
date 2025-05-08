@@ -12,12 +12,12 @@ void keyboard_test_page_initialize(void)
 void keyboard_test_page_function(void)
 {
 
-	bool UP = digitalRead(KEY_UP) == KEY_PRESSED;
-	bool DOWN = digitalRead(KEY_DOWN) == KEY_PRESSED;
-	bool LEFT = digitalRead(KEY_LEFT) == KEY_PRESSED;
-	bool RIGHT = digitalRead(KEY_RIGHT) == KEY_PRESSED;
-	bool A = digitalRead(KEY_A) == KEY_PRESSED;
-	bool B = digitalRead(KEY_B) == KEY_PRESSED;
+	bool UP = digitalRead(KEY_UP) == KEY_PRESSING;
+	bool DOWN = digitalRead(KEY_DOWN) == KEY_PRESSING;
+	bool LEFT = digitalRead(KEY_LEFT) == KEY_PRESSING;
+	bool RIGHT = digitalRead(KEY_RIGHT) == KEY_PRESSING;
+	bool A = digitalRead(KEY_A) == KEY_PRESSING;
+	bool B = digitalRead(KEY_B) == KEY_PRESSING;
 
 	oled.clearBuffer();
 	oled.drawBitmap(0, 0, 16, 16, kbd_test_bitmap);
