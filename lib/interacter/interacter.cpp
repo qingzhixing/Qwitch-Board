@@ -18,5 +18,6 @@ bool Interacter::can_interact()
 
 void Interacter::add_cooldown(long cooldown_ms)
 {
+	update_interaction_tick();
 	last_interaction_tick += cooldown_ms;
 }

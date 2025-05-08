@@ -1,6 +1,6 @@
 #include "speaker.hpp"
 
-static float speaker_volumn_percent = 0.5;
+static float speaker_volumn_percent = 0.1;
 static bool _is_speaker_on = false;
 
 static ledc_timer_config_t timer_config = {
@@ -60,6 +60,7 @@ void set_speaker_volume_percent(float volume)
 		volume = 1;
 	speaker_volumn_percent = volume;
 	ledc_set_duty(LEDC_SPEED_MODE, LEDC_CHANNEL, volumn_to_duty(speaker_volumn_percent));
+	ledc_update_duty(LEDC_SPEED_MODE, LEDC_CHANNEL);
 }
 
 void set_speaker_frequency(int32_t frequency)

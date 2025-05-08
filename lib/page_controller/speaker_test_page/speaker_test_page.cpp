@@ -8,7 +8,9 @@ static Interacter interacter(100);
 
 void speaker_test_page_initialize()
 {
-	interacter.add_cooldown(500);
+	interacter.add_cooldown(1000);
+
+	speaker_off();
 }
 
 static void display_speaker_info()
@@ -57,13 +59,13 @@ static void handle_speaker_interaction()
 	}
 	if (IS_KEY_PRESSING(KEY_UP))
 	{
-		set_speaker_volume_percent(get_speaker_volumn_percent() + 0.1);
+		set_speaker_volume_percent(get_speaker_volumn_percent() + 0.05);
 		interacter.update_interaction_tick();
 		return;
 	}
 	if (IS_KEY_PRESSING(KEY_DOWN))
 	{
-		set_speaker_volume_percent(get_speaker_volumn_percent() - 0.1);
+		set_speaker_volume_percent(get_speaker_volumn_percent() - 0.05);
 		interacter.update_interaction_tick();
 		return;
 	}
