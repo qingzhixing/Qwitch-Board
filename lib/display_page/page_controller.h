@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef DISPLAY_PAGE_H
-#define DISPLAY_PAGE_H
+#ifndef _PAGE_CONTROLLER_
+#define _PAGE_CONTROLLER_
 
 typedef void (*DisplayFunction)(void);
 typedef void (*InitializeFunction)(void);
@@ -10,7 +10,11 @@ typedef void (*InitializeFunction)(void);
 void set_display_function(DisplayFunction function, InitializeFunction initialize_function);
 
 // 调用之前请先进行好初始化
-void display_one_frame(void);
+// void display_one_frame(void);
+
+// 请在 loop() 中调用该函数
+void page_controller_loop(void);
+void page_controller_init(void);
 
 // Home Page
 void home_page_function(void);
@@ -20,4 +24,4 @@ void home_page_initialize(void);
 void keyboard_test_page_function(void);
 void keyboard_test_page_initialize(void);
 
-#endif // !DISPLAY_PAGE_H
+#endif // !_PAGE_CONTROLLER_
