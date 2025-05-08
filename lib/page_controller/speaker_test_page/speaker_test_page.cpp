@@ -23,7 +23,7 @@ static void display_speaker_info()
 	oled.drawStr(30, 12, "Speaker Test");
 	oled.setDrawColor(1);
 
-	snprintf(buffer, sizeof(buffer), "[L/R] Frequency: %d Hz", get_speaker_frequncy_hz());
+	snprintf(buffer, sizeof(buffer), "[L/R] Freq: %d Hz", get_speaker_frequncy_hz());
 	oled.drawStr(0, 25, buffer);
 
 	snprintf(buffer, sizeof(buffer), "[U/D] Volume: %.2f", get_speaker_volumn_percent());
