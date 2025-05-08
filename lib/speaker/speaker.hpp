@@ -30,6 +30,7 @@ void speaker_init();
 void speaker_on();
 void speaker_off();
 bool is_speaker_on();
+void toggle_speaker();
 
 void set_speaker_volume_percent(float volume);
 void set_speaker_frequency(int32_t frequency);

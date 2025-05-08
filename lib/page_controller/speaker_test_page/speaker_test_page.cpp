@@ -9,8 +9,6 @@ static Interacter interacter(100);
 void speaker_test_page_initialize()
 {
 	interacter.add_cooldown(1000);
-
-	speaker_off();
 }
 
 static void display_speaker_info()
@@ -71,14 +69,7 @@ static void handle_speaker_interaction()
 	}
 	if (IS_KEY_PRESSING(KEY_A))
 	{
-		if (is_speaker_on())
-		{
-			speaker_off();
-		}
-		else
-		{
-			speaker_on();
-		}
+		toggle_speaker();
 		interacter.update_interaction_tick();
 		return;
 	}

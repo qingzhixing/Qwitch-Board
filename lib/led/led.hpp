@@ -8,5 +8,7 @@
 void led_init();
 void led_on();
 void led_off();
+bool is_led_on();
+void toggle_led();
 
 #endif // !_LED_H_

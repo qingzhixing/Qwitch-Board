@@ -3,6 +3,7 @@
 #include "keyboard_test_page/keyboard_test_page.hpp"
 #include "home_page/home_page.hpp"
 #include "speaker_test_page/speaker_test_page.hpp"
+#include "led_test_page/led_test_page.hpp"
 
 DisplayFunction current_function = ((void (*)(void))0);
 
@@ -18,6 +19,7 @@ void page_controller_init(void)
 	register_page_display(PageDisplay("Home Page", home_page_function, home_page_initialize));
 	register_page_display(PageDisplay("Kbd Test Page", keyboard_test_page_function, keyboard_test_page_initialize));
 	register_page_display(PageDisplay("Speaker Test Page", speaker_test_page_function, speaker_test_page_initialize));
+	register_page_display(PageDisplay("LED Test Page", led_test_page_function, led_test_page_init));
 }
 
 void set_display_function(DisplayFunction function, InitializeFunction initialize_function)

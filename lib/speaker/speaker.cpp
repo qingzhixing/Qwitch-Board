@@ -60,7 +60,10 @@ void set_speaker_volume_percent(float volume)
 		volume = 1;
 	speaker_volumn_percent = volume;
 	ledc_set_duty(LEDC_SPEED_MODE, LEDC_CHANNEL, volumn_to_duty(speaker_volumn_percent));
-	ledc_update_duty(LEDC_SPEED_MODE, LEDC_CHANNEL);
+	if (_is_speaker_on)
+	{
+		ledc_update_duty(LEDC_SPEED_MODE, LEDC_CHANNEL);
+	}
 }
 
 void set_speaker_frequency(int32_t frequency)
@@ -89,6 +92,19 @@ void speaker_off()
 bool is_speaker_on()
 {
 	return _is_speaker_on;
+}
+
+void toggle_speaker()
+{
+	if (_is_speaker_on)
+	{
+		speaker_off();
+	}
+	else
+	{
+		speaker_on();
+	}
+	_is_speaker_on = !_is_speaker_on;
 }
 
 void speaker_init()
