@@ -3,17 +3,20 @@
 #ifndef _PAGE_CONTROLLER_
 #define _PAGE_CONTROLLER_
 
+#include <keyboard.hpp>
+#include <Arduino.h>
+
 typedef void (*DisplayFunction)(void);
 typedef void (*InitializeFunction)(void);
 
 class PageDisplay
 {
 public:
-	char *page_name;
+	const char *page_name;
 	DisplayFunction function;
 	InitializeFunction initialize_function;
 
-	PageDisplay(char *page_name, DisplayFunction function, InitializeFunction initialize_function)
+	PageDisplay(const char *page_name, DisplayFunction function, InitializeFunction initialize_function)
 	{
 		this->page_name = page_name;
 		this->function = function;
@@ -28,6 +31,11 @@ extern DisplayFunction current_function;
 
 extern bool page_selectable;
 
+inline bool is_page_select_key_pressing()
+{
+	return IS_KEY_PRESSING(KEY_A) && IS_KEY_PRESSING(KEY_B);
+}
+
 // 调用之前请先进行好初始化
 // void display_one_frame(void);
 
@@ -39,13 +47,5 @@ void page_controller_init(void);
 void page_select_function(void);
 void page_select_initialize(void);
 void register_page_display(PageDisplay &&page_display);
-
-// Home Page
-void home_page_function(void);
-void home_page_initialize(void);
-
-// Keyboard Test Page
-void keyboard_test_page_function(void);
-void keyboard_test_page_initialize(void);
 
 #endif // !_PAGE_CONTROLLER_

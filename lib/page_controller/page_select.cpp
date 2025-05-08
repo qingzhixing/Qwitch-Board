@@ -1,16 +1,16 @@
-#include "page_controller.h"
-#include <oled.h>
+#include "page_controller.hpp"
+#include <oled.hpp>
 #include <Arduino.h>
-#include <keyboard.h>
+#include <keyboard.hpp>
 #include <vector>
+#include <interacter.hpp>
 
 static std::vector<PageDisplay> page_displays;
 
 #define PAGE_AMOUNT (page_displays.size())
 
 // 连续交互间隔
-static long interact_interval_ms = 200;
-static long last_interacted_tick_ms = 0;
+static Interacter interacter(200);
 static int current_page = 0;
 static bool hide_info = true;
 static bool need_update_select_screen = false;
@@ -19,17 +19,6 @@ void register_page_display(PageDisplay &&page_display)
 {
 	page_displays.emplace_back(std::move(page_display));
 }
-
-inline bool can_interact()
-{
-	return (long(millis()) - last_interacted_tick_ms) > interact_interval_ms;
-}
-
-inline void update_last_interacted_tick()
-{
-	last_interacted_tick_ms = millis();
-}
-
 void display_page_select_info(void)
 {
 	oled.clearBuffer();
@@ -49,10 +38,10 @@ void display_page_select_info(void)
 
 void page_select_initialize(void)
 {
-	update_last_interacted_tick();
+	interacter.update_interaction_tick();
 
 	// 冷却500ms
-	last_interacted_tick_ms += 500;
+	interacter.add_cooldown(500);
 
 	need_update_select_screen = true;
 }
@@ -68,9 +57,9 @@ void page_select_function(void)
 		return;
 	}
 
-	if (IS_KEY_PRESSING(KEY_B) && can_interact())
+	if (IS_KEY_PRESSING(KEY_B) && interacter.can_interact())
 	{
-		update_last_interacted_tick();
+		interacter.update_interaction_tick();
 		hide_info = !hide_info;
 		if (!hide_info)
 		{
@@ -85,22 +74,22 @@ void page_select_function(void)
 		}
 	}
 
-	if (IS_KEY_PRESSING(KEY_LEFT) && can_interact() && hide_info)
+	if (IS_KEY_PRESSING(KEY_LEFT) && interacter.can_interact() && hide_info)
 	{
-		update_last_interacted_tick();
+		interacter.update_interaction_tick();
 		need_update_select_screen = true;
 		current_page = (current_page - 1 + PAGE_AMOUNT) % PAGE_AMOUNT;
 	}
-	if (IS_KEY_PRESSING(KEY_RIGHT) && can_interact())
+	if (IS_KEY_PRESSING(KEY_RIGHT) && interacter.can_interact())
 	{
-		update_last_interacted_tick();
+		interacter.update_interaction_tick();
 		need_update_select_screen = true;
 		current_page = (current_page + 1) % PAGE_AMOUNT;
 	}
 
-	if (IS_KEY_PRESSING(KEY_A) && can_interact() && hide_info)
+	if (IS_KEY_PRESSING(KEY_A) && interacter.can_interact() && hide_info)
 	{
-		update_last_interacted_tick();
+		interacter.update_interaction_tick();
 		auto &page_display = page_displays[current_page];
 		set_display_function(page_display.function, page_display.initialize_function);
 	}
@@ -112,9 +101,9 @@ void page_select_function(void)
 		snprintf(display_str, sizeof(display_str), "@[%s]", page_display.page_name);
 
 		oled.clearBuffer();
-		oled.drawBox(10, 21, 108, 16);
+		oled.drawBox(0, 21, 128, 16);
 		oled.setDrawColor(0);
-		oled.drawStr(20, 33, display_str);
+		oled.drawStr(10, 33, display_str);
 		oled.setDrawColor(1);
 
 		oled.drawStr(15, 47, "Press A to enter");

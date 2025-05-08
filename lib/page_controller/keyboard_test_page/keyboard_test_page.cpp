@@ -1,9 +1,9 @@
-#include "page_controller.h"
+#include "keyboard_test_page.hpp"
 
-#include <oled.h>
-#include <keyboard.h>
+#include <oled.hpp>
+#include <keyboard.hpp>
 #include <Arduino.h>
-#include <qwitch_bitmap.h>
+#include <qwitch_bitmap.hpp>
 
 void keyboard_test_page_initialize(void)
 {

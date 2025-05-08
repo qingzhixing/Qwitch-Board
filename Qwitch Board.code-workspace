@@ -56,7 +56,9 @@
 			"stdexcept": "cpp",
 			"streambuf": "cpp",
 			"cinttypes": "cpp",
-			"typeinfo": "cpp"
+			"typeinfo": "cpp",
+			"interacter.h": "c",
+			"interacter.hpp": "c"
 		}
 	}
 }

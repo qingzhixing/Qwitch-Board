@@ -5,12 +5,12 @@
 
 #include <Arduino.h>
 
-#define KEY_UP (27U)
-#define KEY_DOWN (14U)
-#define KEY_LEFT (12U)
-#define KEY_RIGHT (13U)
-#define KEY_A (33U)
-#define KEY_B (32U)
+#define KEY_UP (GPIO_NUM_27)
+#define KEY_DOWN (GPIO_NUM_14)
+#define KEY_LEFT (GPIO_NUM_12)
+#define KEY_RIGHT (GPIO_NUM_13)
+#define KEY_A (GPIO_NUM_33)
+#define KEY_B (GPIO_NUM_32)
 
 #define KEY_PRESSING HIGH
 #define KEY_RELEASING LOW

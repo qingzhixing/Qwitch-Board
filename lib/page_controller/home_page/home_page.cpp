@@ -1,6 +1,6 @@
-#include "page_controller.h"
-#include <oled.h>
-#include "qwitch_bitmap.h"
+#include "home_page.hpp"
+#include <oled.hpp>
+#include "qwitch_bitmap.hpp"
 
 static const long bitmap_move_interval_ms = 100;
 static int move_direction_x = -1; // 1 for right, -1 for left

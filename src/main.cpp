@@ -1,15 +1,17 @@
 #include <Arduino.h>
 #include <U8g2lib.h>
-#include <keyboard.h>
-#include <oled.h>
-#include <page_controller.h>
-#include <led.h>
+#include <keyboard.hpp>
+#include <oled.hpp>
+#include <page_controller.hpp>
+#include <led.hpp>
+#include <speaker.hpp>
 
 void setup()
 {
   oled_init();
   keyboard_init();
   led_init();
+  speaker_init();
   Serial.begin(115200);
 
   led_on();
