@@ -15,6 +15,9 @@ void page_controller_init(void)
 	set_display_function(home_page_function, home_page_initialize);
 
 	last_interacted = millis();
+
+	register_page_display(PageDisplay("Home Page", home_page_function, home_page_initialize));
+	register_page_display(PageDisplay("Kbd Test Page", keyboard_test_page_function, keyboard_test_page_initialize));
 }
 
 void set_display_function(DisplayFunction function, InitializeFunction initialize_function)

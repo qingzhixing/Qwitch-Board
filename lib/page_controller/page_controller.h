@@ -6,6 +6,21 @@
 typedef void (*DisplayFunction)(void);
 typedef void (*InitializeFunction)(void);
 
+class PageDisplay
+{
+public:
+	char *page_name;
+	DisplayFunction function;
+	InitializeFunction initialize_function;
+
+	PageDisplay(char *page_name, DisplayFunction function, InitializeFunction initialize_function)
+	{
+		this->page_name = page_name;
+		this->function = function;
+		this->initialize_function = initialize_function;
+	}
+};
+
 // 传入要在循环中每次调用的函数，以及其初始化函数, 初始化函数仅在第一次调用时调用一次
 void set_display_function(DisplayFunction function, InitializeFunction initialize_function);
 
@@ -20,9 +35,10 @@ extern bool page_selectable;
 void page_controller_loop(void);
 void page_controller_init(void);
 
-// 页面选择函数
+// 页面选择
 void page_select_function(void);
 void page_select_initialize(void);
+void register_page_display(PageDisplay &&page_display);
 
 // Home Page
 void home_page_function(void);
