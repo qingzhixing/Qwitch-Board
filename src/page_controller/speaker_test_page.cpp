@@ -35,42 +35,38 @@ static void display_speaker_info()
 
 static void handle_speaker_interaction()
 {
-	if (!interacter.can_interact())
-		return;
-
 	if (is_page_select_key_pressing())
 	{
 		return;
 	}
 
-	if (IS_KEY_PRESSING(KEY_LEFT))
+	if (is_key_pressing(KEY_LEFT) && interacter.can_interact())
 	{
 		set_speaker_frequency(get_speaker_frequncy_hz() - 100);
 		interacter.update_interaction_tick();
 		return;
 	}
-	if (IS_KEY_PRESSING(KEY_RIGHT))
+	if (is_key_pressing(KEY_RIGHT) && interacter.can_interact())
 	{
 		set_speaker_frequency(get_speaker_frequncy_hz() + 100);
 		interacter.update_interaction_tick();
 		return;
 	}
-	if (IS_KEY_PRESSING(KEY_UP))
+	if (is_key_pressing(KEY_UP) && interacter.can_interact())
 	{
 		set_speaker_volume_percent(get_speaker_volumn_percent() + 0.05);
 		interacter.update_interaction_tick();
 		return;
 	}
-	if (IS_KEY_PRESSING(KEY_DOWN))
+	if (is_key_pressing(KEY_DOWN) && interacter.can_interact())
 	{
 		set_speaker_volume_percent(get_speaker_volumn_percent() - 0.05);
 		interacter.update_interaction_tick();
 		return;
 	}
-	if (IS_KEY_PRESSING(KEY_A))
+	if (is_key_on_pressed(KEY_A))
 	{
 		toggle_speaker();
-		interacter.update_interaction_tick();
 		return;
 	}
 }

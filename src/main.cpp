@@ -8,18 +8,22 @@
 
 void setup()
 {
-  oled_init();
-  keyboard_init();
-  led_init();
-  speaker_init();
-  Serial.begin(115200);
+	oled_init();
+	keyboard_init();
+	led_init();
+	speaker_init();
+	Serial.begin(115200);
 
-  led_on();
+	led_on();
 
-  page_controller_init();
+	page_controller_init();
 }
 
 void loop()
 {
-  page_controller_loop();
+	// 硬件事件
+	update_keyboard_state();
+
+	// 交互逻辑
+	page_controller_loop();
 }

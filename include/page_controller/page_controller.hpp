@@ -33,7 +33,7 @@ extern bool page_selectable;
 
 inline bool is_page_select_key_pressing()
 {
-	return IS_KEY_PRESSING(KEY_A) && IS_KEY_PRESSING(KEY_B);
+	return is_key_pressing(KEY_A) && is_key_pressing(KEY_B);
 }
 
 // 调用之前请先进行好初始化

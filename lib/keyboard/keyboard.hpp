@@ -15,9 +15,24 @@
 #define KEY_PRESSING HIGH
 #define KEY_RELEASING LOW
 
-#define IS_KEY_PRESSING(key) (digitalRead(key) == KEY_PRESSING)
-#define IS_KEY_RELEASING(key) (digitalRead(key) == KEY_RELEASING)
+typedef struct KeyboardState
+{
+	bool is_pressing;
+	bool on_pressed;
+	bool on_released;
+	bool previous_pressing;
+} KeyboardState;
 
 void keyboard_init();
+
+// 请在每个loop()中调用update_keyboard_state()来更新键盘状态
+void update_keyboard_state();
+
+KeyboardState get_keyboard_state(gpio_num_t key);
+
+bool is_key_pressing(gpio_num_t key);
+bool is_key_releasing(gpio_num_t key);
+bool is_key_on_pressed(gpio_num_t key);
+bool is_key_on_released(gpio_num_t key);
 
 #endif // !_KEYBOARD_H_
