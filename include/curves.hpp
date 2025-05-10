@@ -16,4 +16,15 @@ float easeOutQuint(float lambda)
 	return 1 - pow(1 - lambda, 5);
 }
 
+// lambda from 0 to 1
+float easeInOutBack(float lambda)
+{
+	const float c1 = 1.70158;
+	const float c2 = c1 * 1.525;
+
+	return lambda < 0.5
+			   ? (pow(2 * lambda, 2) * ((c2 + 1) * 2 * lambda - c2)) / 2
+			   : (pow(2 * lambda - 2, 2) * ((c2 + 1) * (lambda * 2 - 2) + c2) + 2) / 2;
+}
+
 #endif //! CURVES_HPP
