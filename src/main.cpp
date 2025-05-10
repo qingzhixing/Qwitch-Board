@@ -2,7 +2,7 @@
 #include <U8g2lib.h>
 #include <keyboard.hpp>
 #include <oled.hpp>
-#include <page_controller.hpp>
+#include <page_controller/page_controller.hpp>
 #include <led.hpp>
 #include <speaker.hpp>
 

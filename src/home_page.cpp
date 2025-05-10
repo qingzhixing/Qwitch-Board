@@ -1,4 +1,4 @@
-#include "home_page.hpp"
+#include "page_controller/home_page.hpp"
 #include <oled.hpp>
 #include "qwitch_bitmap.hpp"
 

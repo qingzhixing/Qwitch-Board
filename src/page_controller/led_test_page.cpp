@@ -1,7 +1,7 @@
-#include "led_test_page.hpp"
+#include "page_controller/led_test_page.hpp"
 
 #include <interacter.hpp>
-#include <page_controller.hpp>
+#include <page_controller/page_controller.hpp>
 #include <oled.hpp>
 
 static Interacter interacter(200);

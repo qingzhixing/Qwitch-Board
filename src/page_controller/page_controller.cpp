@@ -1,9 +1,9 @@
-#include "page_controller.hpp"
+#include "page_controller/page_controller.hpp"
 #include <interacter.hpp>
-#include "keyboard_test_page/keyboard_test_page.hpp"
-#include "home_page/home_page.hpp"
-#include "speaker_test_page/speaker_test_page.hpp"
-#include "led_test_page/led_test_page.hpp"
+#include "page_controller//keyboard_test_page.hpp"
+#include "page_controller//home_page.hpp"
+#include "page_controller//speaker_test_page.hpp"
+#include "page_controller//led_test_page.hpp"
 
 DisplayFunction current_function = ((void (*)(void))0);
 
