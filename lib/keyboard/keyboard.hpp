@@ -35,4 +35,9 @@ bool is_key_releasing(gpio_num_t key);
 bool is_key_on_pressed(gpio_num_t key);
 bool is_key_on_released(gpio_num_t key);
 
+inline bool is_page_select_key_pressing()
+{
+	return is_key_pressing(KEY_A) && is_key_pressing(KEY_B);
+}
+
 #endif // !_KEYBOARD_H_

@@ -1,7 +1,7 @@
 #include "page_controller/speaker_test_page.hpp"
 #include <speaker.hpp>
 #include <oled.hpp>
-#include <page_controller/page_controller.hpp>
+#include <keyboard.hpp>
 #include <interacter.hpp>
 
 static Interacter interacter(100);

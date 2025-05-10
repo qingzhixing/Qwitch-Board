@@ -3,7 +3,7 @@
 #include <oled.hpp>
 #include <keyboard.hpp>
 #include <Arduino.h>
-#include <qwitch_bitmap.hpp>
+#include <bitmaps.hpp>
 
 void keyboard_test_page_initialize(void)
 {

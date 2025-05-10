@@ -31,11 +31,6 @@ extern DisplayFunction current_function;
 
 extern bool page_selectable;
 
-inline bool is_page_select_key_pressing()
-{
-	return is_key_pressing(KEY_A) && is_key_pressing(KEY_B);
-}
-
 // 调用之前请先进行好初始化
 // void display_one_frame(void);
 

@@ -4,6 +4,7 @@
 #include "page_controller//home_page.hpp"
 #include "page_controller//speaker_test_page.hpp"
 #include "page_controller//led_test_page.hpp"
+#include "page_controller/animation_page.hpp"
 
 DisplayFunction current_function = ((void (*)(void))0);
 
@@ -20,6 +21,7 @@ void page_controller_init(void)
 	register_page_display(PageDisplay("Kbd Test Page", keyboard_test_page_function, keyboard_test_page_initialize));
 	register_page_display(PageDisplay("Speaker Test Page", speaker_test_page_function, speaker_test_page_initialize));
 	register_page_display(PageDisplay("LED Test Page", led_test_page_function, led_test_page_init));
+	register_page_display(PageDisplay("Animation Page", animation_page_function, animation_page_initialize));
 }
 
 void set_display_function(DisplayFunction function, InitializeFunction initialize_function)
