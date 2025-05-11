@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef _KEYBOARD_H_
-#define _KEYBOARD_H_
+#ifndef KEYBOARD_H_
+#define KEYBOARD_H_
 
 #include <Arduino.h>
 
@@ -40,4 +40,4 @@ inline bool is_page_select_key_pressing()
 	return is_key_pressing(KEY_A) && is_key_pressing(KEY_B);
 }
 
-#endif // !_KEYBOARD_H_
+#endif // KEYBOARD_H_

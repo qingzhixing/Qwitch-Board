@@ -3,28 +3,28 @@
 #include <curves.hpp>
 #include <oled.hpp>
 
-PageDisplay animation_page = PageDisplay("Animation Page", animation_page_function, animation_page_initialize);
+extern PageDisplay animation_page = PageDisplay("Animation Page", animation_page_function, animation_page_initialize);
 
 static bool move_right = true;
 static int start_x = 20;
-static int destinate_x = 87;
+static int destination_x = 87;
 static long animation_start_tick_ms = 0;
 static int animation_duration_ms = 800;
 
 void animation_page_initialize()
 {
-	animation_start_tick_ms = millis();
+	animation_start_tick_ms = static_cast<long>(millis());
 }
 
 void animation_page_function()
 {
-	long current_tick_ms = millis();
+	long current_tick_ms = static_cast<long>(millis());
 	int elapsed_time_ms = current_tick_ms - animation_start_tick_ms;
 	// calculate the animation process
-	float animation_progress = (float)elapsed_time_ms / animation_duration_ms;
+	float animation_progress = static_cast<float>(elapsed_time_ms) / static_cast<float>(animation_duration_ms);
 
 	// calculate the animation value
-	int now_x = lerp(start_x, destinate_x, easeInOutBack(animation_progress));
+	const int now_x = static_cast<int>(lerp(static_cast<float>(start_x), static_cast<float>(destination_x),easeInOutBack(animation_progress)));
 
 	// update the display
 	oled.clearBuffer();
@@ -39,12 +39,12 @@ void animation_page_function()
 		if (move_right)
 		{
 			start_x = 20;
-			destinate_x = 87;
+			destination_x = 87;
 		}
 		else
 		{
 			start_x = 87;
-			destinate_x = 20;
+			destination_x = 20;
 		}
 	}
 }

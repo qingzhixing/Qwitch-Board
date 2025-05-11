@@ -7,7 +7,7 @@
 extern PageDisplay keyboard_test_page;
 
 // Keyboard Test Page
-void keyboard_test_page_function(void);
-void keyboard_test_page_initialize(void);
+void keyboard_test_page_function();
+void keyboard_test_page_initialize();
 
 #endif //! KEYBOARD_TEST_PAGE_HPP

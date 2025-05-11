@@ -1,12 +1,13 @@
+#include "pages/menu_page.hpp"
 #include "page_controller.hpp"
 #include <oled.hpp>
 #include <Arduino.h>
 #include <keyboard.hpp>
 #include <interaction.hpp>
 
-PageDisplay menu_page = PageDisplay(menu_page_function, menu_page_initialize);
+extern PageDisplay menu_page = PageDisplay(menu_page_function, menu_page_initialize);
 
-#define PAGE_AMOUNT (page_displays.size())
+#define PAGE_AMOUNT (int(page_displays.size()))
 
 // 连续交互间隔
 static Interaction interaction(200);
@@ -14,7 +15,7 @@ static int current_page = 0;
 static bool hide_info = true;
 static bool need_update_select_screen = false;
 
-void display_page_select_info(void)
+void display_page_select_info()
 {
 	oled.clearBuffer();
 
@@ -31,7 +32,7 @@ void display_page_select_info(void)
 	hide_info = false;
 }
 
-void menu_page_initialize(void)
+void menu_page_initialize()
 {
 	interaction.update_interaction_tick();
 
@@ -41,7 +42,7 @@ void menu_page_initialize(void)
 	need_update_select_screen = true;
 }
 
-void menu_page_function(void)
+void menu_page_function()
 {
 	if (page_displays.empty())
 	{

@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _LED_H_
-#define _LED_H_
+#ifndef LED_H_
+#define LED_H_
 
 #include <Arduino.h>
 
@@ -11,4 +11,4 @@ void led_off();
 bool is_led_on();
 void toggle_led();
 
-#endif // !_LED_H_
+#endif // LED_H_

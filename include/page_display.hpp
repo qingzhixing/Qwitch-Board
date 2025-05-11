@@ -3,8 +3,8 @@
 #define PAGE_DISPLAY_HPP
 #include "bitmaps.hpp"
 
-typedef void (*DisplayFunction)(void);
-typedef void (*InitializeFunction)(void);
+typedef void (*DisplayFunction)();
+typedef void (*InitializeFunction)();
 
 class PageDisplay
 {

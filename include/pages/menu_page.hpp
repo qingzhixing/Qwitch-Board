@@ -4,7 +4,7 @@
 #include <page_display.hpp>
 extern PageDisplay menu_page;
 
-void menu_page_initialize(void);
-void menu_page_function(void);
+void menu_page_initialize();
+void menu_page_function();
 
 #endif //! MENU_PAGE_HPP

@@ -1,5 +1,7 @@
 #include "page_controller.hpp"
 #include <interaction.hpp>
+#include <keyboard.hpp>
+
 #include "pages/keyboard_test_page.hpp"
 #include "pages/home_page.hpp"
 #include "pages/speaker_test_page.hpp"
@@ -19,14 +21,14 @@ bool page_selectable = true;
 
 void register_page_display(PageDisplay &&page_display)
 {
-	page_displays.emplace_back(std::move(page_display));
+	page_displays.emplace_back(page_display);
 }
 void register_page_display(const PageDisplay &page_display)
 {
 	page_displays.push_back(page_display);
 }
 
-void page_controller_init(void)
+void page_controller_init()
 {
 	set_display_function(home_page);
 
@@ -38,13 +40,13 @@ void page_controller_init(void)
 	register_page_display(new_menu);
 }
 
-void set_display_function(PageDisplay page_display)
+void set_display_function(const PageDisplay &page_display)
 {
 	current_page = page_display;
 	initialized = false;
 }
 
-void display_one_frame(void)
+void display_one_frame()
 {
 	if (!initialized)
 	{
@@ -59,7 +61,7 @@ void display_one_frame(void)
 }
 
 // 请在 loop() 中调用该函数
-void page_controller_loop(void)
+void page_controller_loop()
 {
 	display_one_frame();
 
@@ -68,7 +70,6 @@ void page_controller_loop(void)
 		interaction.update_interaction_tick();
 	}
 
-	long current_time_ms = millis();
 	if (interaction.can_interact())
 	{
 		interaction.update_interaction_tick();

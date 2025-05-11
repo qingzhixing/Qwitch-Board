@@ -26,12 +26,12 @@ void keyboard_init()
 	key_state[KEY_B] = default_state;
 }
 
-static void update_single_key(gpio_num_t key)
+static void update_single_key(const gpio_num_t key)
 {
-	bool current_pressing = digitalRead(key) == KEY_PRESSING;
-	bool previous_pressing = key_state[key].previous_pressing;
-	bool on_pressed = !previous_pressing && current_pressing;
-	bool on_released = previous_pressing && !current_pressing;
+	const bool current_pressing = digitalRead(key) == KEY_PRESSING;
+	const bool previous_pressing = key_state[key].previous_pressing;
+	const bool on_pressed = !previous_pressing && current_pressing;
+	const bool on_released = previous_pressing && !current_pressing;
 
 	key_state[key] = {
 		.is_pressing = current_pressing,
@@ -52,7 +52,7 @@ void update_keyboard_state()
 	update_single_key(KEY_B);
 }
 
-KeyboardState get_keyboard_state(gpio_num_t key)
+KeyboardState get_keyboard_state(const gpio_num_t key)
 {
 	// 没有这个按键
 	if (key_state.find(key) == key_state.end())
@@ -62,19 +62,19 @@ KeyboardState get_keyboard_state(gpio_num_t key)
 	return key_state[key];
 }
 
-bool is_key_pressing(gpio_num_t key)
+bool is_key_pressing(const gpio_num_t key)
 {
 	return get_keyboard_state(key).is_pressing;
 }
-bool is_key_releasing(gpio_num_t key)
+bool is_key_releasing(const gpio_num_t key)
 {
 	return !get_keyboard_state(key).is_pressing;
 }
-bool is_key_on_pressed(gpio_num_t key)
+bool is_key_on_pressed(const gpio_num_t key)
 {
 	return get_keyboard_state(key).on_pressed;
 }
-bool is_key_on_released(gpio_num_t key)
+bool is_key_on_released(const gpio_num_t key)
 {
 	return get_keyboard_state(key).on_released;
 }

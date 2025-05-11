@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <U8g2lib.h>
 #include <keyboard.hpp>
 #include <oled.hpp>
 #include <page_controller.hpp>

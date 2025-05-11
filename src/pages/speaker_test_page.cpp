@@ -6,7 +6,7 @@
 
 static Interaction interaction(100);
 
-PageDisplay speaker_test_page = PageDisplay("Speaker Test Page", speaker_test_page_function, speaker_test_page_initialize);
+extern PageDisplay speaker_test_page = PageDisplay("Speaker Test Page", speaker_test_page_function, speaker_test_page_initialize);
 
 void speaker_test_page_initialize()
 {
@@ -23,7 +23,7 @@ static void display_speaker_info()
 	oled.drawStr(30, 12, "Speaker Test");
 	oled.setDrawColor(1);
 
-	snprintf(buffer, sizeof(buffer), "[L/R] Freq: %d Hz", get_speaker_frequncy_hz());
+	snprintf(buffer, sizeof(buffer), "[L/R] Freq: %d Hz", get_speaker_frequency_hz());
 	oled.drawStr(0, 25, buffer);
 
 	snprintf(buffer, sizeof(buffer), "[U/D] Volume: %.2f", get_speaker_volumn_percent());
@@ -44,25 +44,25 @@ static void handle_speaker_interaction()
 
 	if (is_key_pressing(KEY_LEFT) && interaction.can_interact())
 	{
-		set_speaker_frequency(get_speaker_frequncy_hz() - 100);
+		set_speaker_frequency(get_speaker_frequency_hz() - 100);
 		interaction.update_interaction_tick();
 		return;
 	}
 	if (is_key_pressing(KEY_RIGHT) && interaction.can_interact())
 	{
-		set_speaker_frequency(get_speaker_frequncy_hz() + 100);
+		set_speaker_frequency(get_speaker_frequency_hz() + 100);
 		interaction.update_interaction_tick();
 		return;
 	}
 	if (is_key_pressing(KEY_UP) && interaction.can_interact())
 	{
-		set_speaker_volume_percent(get_speaker_volumn_percent() + 0.05);
+		set_speaker_volume_percent(get_speaker_volumn_percent() + 0.05f);
 		interaction.update_interaction_tick();
 		return;
 	}
 	if (is_key_pressing(KEY_DOWN) && interaction.can_interact())
 	{
-		set_speaker_volume_percent(get_speaker_volumn_percent() - 0.05);
+		set_speaker_volume_percent(get_speaker_volumn_percent() - 0.05f);
 		interaction.update_interaction_tick();
 		return;
 	}

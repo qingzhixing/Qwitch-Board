@@ -2,25 +2,25 @@
 #ifndef CURVES_HPP
 #define CURVES_HPP
 
-#include <math.h>
+#include <cmath>
 
 // lambda from 0 to 1
-float lerp(float from, float to, float lambda)
+inline float lerp(const float from, const float to, const float lambda)
 {
 	return (1 - lambda) * from + lambda * to;
 }
 
 // lambda from 0 to 1
-float easeOutQuint(float lambda)
+inline float easeOutQuint(const float lambda)
 {
 	return 1 - pow(1 - lambda, 5);
 }
 
 // lambda from 0 to 1
-float easeInOutBack(float lambda)
+inline float easeInOutBack(const float lambda)
 {
-	const float c1 = 1.70158;
-	const float c2 = c1 * 1.525;
+	constexpr float c1 = 1.70158;
+	constexpr float c2 = c1 * 1.525;
 
 	return lambda < 0.5
 			   ? (pow(2 * lambda, 2) * ((c2 + 1) * 2 * lambda - c2)) / 2

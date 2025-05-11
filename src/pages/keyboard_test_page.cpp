@@ -5,13 +5,13 @@
 #include <Arduino.h>
 #include <bitmaps.hpp>
 
-PageDisplay keyboard_test_page = PageDisplay("Kbd Test Page", keyboard_test_page_function, keyboard_test_page_initialize, epd_bitmap_icon_keyboard);
+extern PageDisplay keyboard_test_page = PageDisplay("Kbd Test Page", keyboard_test_page_function, keyboard_test_page_initialize, epd_bitmap_icon_keyboard);
 
-void keyboard_test_page_initialize(void)
+void keyboard_test_page_initialize()
 {
 }
 
-void keyboard_test_page_function(void)
+void keyboard_test_page_function()
 {
 
 	bool UP = digitalRead(KEY_UP) == KEY_PRESSING;

@@ -1,8 +1,8 @@
 #pragma once
-#ifndef _QWITCH_BITMAP_H_
-#define _QWITCH_BITMAP_H_
+#ifndef QWITCH_BITMAP_H_
+#define QWITCH_BITMAP_H_
 
-#include <stdint.h>
+#include <cstdint>
 
 static const unsigned char qwitch_bitmap[] = { // 16*8 x 16
 	0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
@@ -229,4 +229,4 @@ static const unsigned char *bitmap_item_backgrounds[2] = {
 	epd_bitmap_background_center,
 };
 
-#endif // !_QWITCH_BITMAP_H_
+#endif // QWITCH_BITMAP_H_

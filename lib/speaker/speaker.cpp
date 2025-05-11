@@ -1,7 +1,8 @@
 #include "speaker.hpp"
+#include "driver/ledc.h"
 
 static float speaker_volumn_percent = 0.1;
-static bool _is_speaker_on = false;
+static bool speaker_on_state = false;
 
 static ledc_timer_config_t timer_config = {
 	.speed_mode = LEDC_SPEED_MODE,
@@ -20,7 +21,7 @@ static ledc_channel_config_t channel_config = {
 	.hpoint = LEDC_CHANNEL_HPOINT,
 };
 
-uint16_t get_speaker_frequncy_hz()
+uint16_t get_speaker_frequency_hz()
 {
 	return timer_config.freq_hz;
 }
@@ -40,7 +41,7 @@ static uint16_t volumn_to_duty(float volume)
 	{
 		return MAX_DUTY;
 	}
-	return (uint16_t)(volume * MAX_DUTY);
+	return static_cast<uint16_t>(volume * MAX_DUTY);
 }
 
 static void setup_pwm()
@@ -60,7 +61,7 @@ void set_speaker_volume_percent(float volume)
 		volume = 1;
 	speaker_volumn_percent = volume;
 	ledc_set_duty(LEDC_SPEED_MODE, LEDC_CHANNEL, volumn_to_duty(speaker_volumn_percent));
-	if (_is_speaker_on)
+	if (speaker_on_state)
 	{
 		ledc_update_duty(LEDC_SPEED_MODE, LEDC_CHANNEL);
 	}
@@ -78,25 +79,25 @@ void set_speaker_frequency(int32_t frequency)
 
 void speaker_on()
 {
-	_is_speaker_on = true;
+	speaker_on_state = true;
 	ledc_set_duty(LEDC_SPEED_MODE, LEDC_CHANNEL, volumn_to_duty(speaker_volumn_percent));
 	ledc_update_duty(LEDC_SPEED_MODE, LEDC_CHANNEL);
 }
 void speaker_off()
 {
-	_is_speaker_on = false;
+	speaker_on_state = false;
 	ledc_set_duty(LEDC_SPEED_MODE, LEDC_CHANNEL, 0);
 	ledc_update_duty(LEDC_SPEED_MODE, LEDC_CHANNEL);
 }
 
 bool is_speaker_on()
 {
-	return _is_speaker_on;
+	return speaker_on_state;
 }
 
 void toggle_speaker()
 {
-	if (_is_speaker_on)
+	if (speaker_on_state)
 	{
 		speaker_off();
 	}

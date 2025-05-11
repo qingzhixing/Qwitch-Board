@@ -2,21 +2,21 @@
 #include <oled.hpp>
 #include "bitmaps.hpp"
 
-PageDisplay home_page = PageDisplay("Home Page", home_page_function, home_page_initialize);
+extern PageDisplay home_page = PageDisplay("Home Page", home_page_function, home_page_initialize);
 
-static const long bitmap_move_interval_ms = 100;
+static constexpr long bitmap_move_interval_ms = 100;
 static int move_direction_x = -1; // 1 for right, -1 for left
 static long last_move_time_ms = 0;
 static long current_bitmap_x = 32;
 
-void home_page_initialize(void)
+void home_page_initialize()
 {
-	last_move_time_ms = millis();
+	last_move_time_ms = static_cast<long>(millis());
 }
 
-void home_page_function(void)
+void home_page_function()
 {
-	long current_time_ms = millis();
+	long current_time_ms = static_cast<long>(millis());
 	if (current_time_ms - last_move_time_ms >= bitmap_move_interval_ms)
 	{
 		last_move_time_ms = current_time_ms;

@@ -5,8 +5,8 @@
 #include <page_display.hpp>
 
 // Home Page
-void home_page_function(void);
-void home_page_initialize(void);
+void home_page_function();
+void home_page_initialize();
 
 extern PageDisplay home_page;
 

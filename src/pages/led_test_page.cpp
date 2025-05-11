@@ -4,7 +4,7 @@
 #include <keyboard.hpp>
 #include <oled.hpp>
 
-PageDisplay led_test_page = PageDisplay("LED Test Page", led_test_page_function, led_test_page_init);
+extern PageDisplay led_test_page = PageDisplay("LED Test Page", led_test_page_function, led_test_page_init);
 
 void led_test_page_init()
 {

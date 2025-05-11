@@ -1,10 +1,9 @@
 #pragma once
 
-#ifndef _SPEAKER_H_
-#define _SPEAKER_H_
+#ifndef SPEAKER_H_
+#define SPEAKER_H_
 
 #include <Arduino.h>
-#include <driver/ledc.h>
 
 #define LEDC_CHANNEL LEDC_CHANNEL_0
 // 8位分辨率
@@ -22,7 +21,7 @@
 #define SPEAKER_PIN GPIO_NUM_23
 
 // PWM频率
-uint16_t get_speaker_frequncy_hz();
+uint16_t get_speaker_frequency_hz();
 float get_speaker_volumn_percent();
 
 void speaker_init();
@@ -35,4 +34,4 @@ void toggle_speaker();
 void set_speaker_volume_percent(float volume);
 void set_speaker_frequency(int32_t frequency);
 
-#endif // !_SPEAKER_H_
+#endif // SPEAKER_H_
