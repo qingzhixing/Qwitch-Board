@@ -1,11 +1,10 @@
-#include "page_controller/led_test_page.hpp"
+#include "pages/led_test_page.hpp"
 
 #include <interacter.hpp>
 #include <keyboard.hpp>
 #include <oled.hpp>
 
 PageDisplay led_test_page = PageDisplay("LED Test Page", led_test_page_function, led_test_page_init);
-
 
 void led_test_page_init()
 {

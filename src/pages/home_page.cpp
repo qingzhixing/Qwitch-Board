@@ -1,4 +1,4 @@
-#include "page_controller/home_page.hpp"
+#include "pages/home_page.hpp"
 #include <oled.hpp>
 #include "bitmaps.hpp"
 

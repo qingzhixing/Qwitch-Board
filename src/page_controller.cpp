@@ -1,12 +1,12 @@
-#include "page_controller/page_controller.hpp"
+#include "page_controller.hpp"
 #include <interacter.hpp>
-#include "page_controller//keyboard_test_page.hpp"
-#include "page_controller//home_page.hpp"
-#include "page_controller//speaker_test_page.hpp"
-#include "page_controller//led_test_page.hpp"
-#include "page_controller/animation_page.hpp"
-#include "page_controller/new_menu.hpp"
-#include "page_controller/menu_page.hpp"
+#include "pages/keyboard_test_page.hpp"
+#include "pages/home_page.hpp"
+#include "pages/speaker_test_page.hpp"
+#include "pages/led_test_page.hpp"
+#include "pages/animation_page.hpp"
+#include "pages/new_menu.hpp"
+#include "pages/menu_page.hpp"
 
 std::vector<PageDisplay> page_displays{};
 

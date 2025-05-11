@@ -1,4 +1,4 @@
-#include "page_controller/animation_page.hpp"
+#include "pages/animation_page.hpp"
 #include <Arduino.h>
 #include <curves.hpp>
 #include <oled.hpp>

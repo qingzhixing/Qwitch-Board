@@ -1,4 +1,4 @@
-#include "page_controller/speaker_test_page.hpp"
+#include "pages/speaker_test_page.hpp"
 #include <speaker.hpp>
 #include <oled.hpp>
 #include <keyboard.hpp>

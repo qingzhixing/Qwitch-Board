@@ -1,4 +1,4 @@
-#include "page_controller/keyboard_test_page.hpp"
+#include "pages/keyboard_test_page.hpp"
 
 #include <oled.hpp>
 #include <keyboard.hpp>

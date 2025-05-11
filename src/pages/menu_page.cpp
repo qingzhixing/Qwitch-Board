@@ -1,4 +1,4 @@
-#include "page_controller/page_controller.hpp"
+#include "page_controller.hpp"
 #include <oled.hpp>
 #include <Arduino.h>
 #include <keyboard.hpp>
