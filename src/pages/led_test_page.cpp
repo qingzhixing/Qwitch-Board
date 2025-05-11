@@ -1,6 +1,6 @@
 #include "pages/led_test_page.hpp"
 
-#include <interacter.hpp>
+#include <interaction.hpp>
 #include <keyboard.hpp>
 #include <oled.hpp>
 

@@ -2,7 +2,7 @@
 #include <speaker.hpp>
 #include <oled.hpp>
 #include <keyboard.hpp>
-#include <interacter.hpp>
+#include <interaction.hpp>
 
 static Interaction interaction(100);
 

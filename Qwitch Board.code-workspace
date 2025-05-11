@@ -57,8 +57,7 @@
 			"streambuf": "cpp",
 			"cinttypes": "cpp",
 			"typeinfo": "cpp",
-			"interacter.h": "c",
-			"interacter.hpp": "c"
+			"interaction.hpp": "c"
 		}
 	}
 }

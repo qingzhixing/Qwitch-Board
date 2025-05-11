@@ -2,7 +2,7 @@
 #include <oled.hpp>
 #include <Arduino.h>
 #include <keyboard.hpp>
-#include <interacter.hpp>
+#include <interaction.hpp>
 
 PageDisplay menu_page = PageDisplay(menu_page_function, menu_page_initialize);
 
