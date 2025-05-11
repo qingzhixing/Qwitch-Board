@@ -5,10 +5,13 @@
 #include "page_controller//speaker_test_page.hpp"
 #include "page_controller//led_test_page.hpp"
 #include "page_controller/animation_page.hpp"
+#include "page_controller/new_menu.hpp"
 
 DisplayFunction current_function = ((void (*)(void))0);
+InitializeFunction current_initialize_function = ((void (*)(void))0);
 
 static Interacter interacter(1500);
+static bool initialized = false;
 
 bool page_selectable = true;
 
@@ -22,6 +25,7 @@ void page_controller_init(void)
 	register_page_display(PageDisplay("Speaker Test Page", speaker_test_page_function, speaker_test_page_initialize));
 	register_page_display(PageDisplay("LED Test Page", led_test_page_function, led_test_page_init));
 	register_page_display(PageDisplay("Animation Page", animation_page_function, animation_page_initialize));
+	register_page_display(PageDisplay("New Menu", new_menu_function, new_menu_initialize));
 }
 
 void set_display_function(DisplayFunction function, InitializeFunction initialize_function)
@@ -29,12 +33,19 @@ void set_display_function(DisplayFunction function, InitializeFunction initializ
 	current_function = function;
 	if (initialize_function)
 	{
-		initialize_function();
+		current_initialize_function = initialize_function;
+		initialized = false;
 	}
 }
 
 void display_one_frame(void)
 {
+	if (!initialized)
+	{
+		current_initialize_function();
+		initialized = true;
+	}
+
 	if (current_function)
 	{
 		current_function();

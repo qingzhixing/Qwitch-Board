@@ -6,6 +6,6 @@ void oled_init()
 {
 	oled.begin();
 	oled.clearBuffer();
-	oled.setFont(u8g2_font_ncenB08_tr);
+	oled.setFont(u8g2_font_t0_13_tr);
 	oled.setDrawColor(1);
 }
