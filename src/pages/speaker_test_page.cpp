@@ -4,13 +4,13 @@
 #include <keyboard.hpp>
 #include <interacter.hpp>
 
-static Interacter interacter(100);
+static Interaction interaction(100);
 
 PageDisplay speaker_test_page = PageDisplay("Speaker Test Page", speaker_test_page_function, speaker_test_page_initialize);
 
 void speaker_test_page_initialize()
 {
-	interacter.add_cooldown(300);
+	interaction.add_cooldown(300);
 }
 
 static void display_speaker_info()
@@ -42,28 +42,28 @@ static void handle_speaker_interaction()
 		return;
 	}
 
-	if (is_key_pressing(KEY_LEFT) && interacter.can_interact())
+	if (is_key_pressing(KEY_LEFT) && interaction.can_interact())
 	{
 		set_speaker_frequency(get_speaker_frequncy_hz() - 100);
-		interacter.update_interaction_tick();
+		interaction.update_interaction_tick();
 		return;
 	}
-	if (is_key_pressing(KEY_RIGHT) && interacter.can_interact())
+	if (is_key_pressing(KEY_RIGHT) && interaction.can_interact())
 	{
 		set_speaker_frequency(get_speaker_frequncy_hz() + 100);
-		interacter.update_interaction_tick();
+		interaction.update_interaction_tick();
 		return;
 	}
-	if (is_key_pressing(KEY_UP) && interacter.can_interact())
+	if (is_key_pressing(KEY_UP) && interaction.can_interact())
 	{
 		set_speaker_volume_percent(get_speaker_volumn_percent() + 0.05);
-		interacter.update_interaction_tick();
+		interaction.update_interaction_tick();
 		return;
 	}
-	if (is_key_pressing(KEY_DOWN) && interacter.can_interact())
+	if (is_key_pressing(KEY_DOWN) && interaction.can_interact())
 	{
 		set_speaker_volume_percent(get_speaker_volumn_percent() - 0.05);
-		interacter.update_interaction_tick();
+		interaction.update_interaction_tick();
 		return;
 	}
 	if (is_key_on_pressed(KEY_A))

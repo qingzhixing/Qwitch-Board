@@ -9,7 +9,7 @@ PageDisplay menu_page = PageDisplay(menu_page_function, menu_page_initialize);
 #define PAGE_AMOUNT (page_displays.size())
 
 // 连续交互间隔
-static Interacter interacter(200);
+static Interaction interaction(200);
 static int current_page = 0;
 static bool hide_info = true;
 static bool need_update_select_screen = false;
@@ -33,10 +33,10 @@ void display_page_select_info(void)
 
 void menu_page_initialize(void)
 {
-	interacter.update_interaction_tick();
+	interaction.update_interaction_tick();
 
 	// 冷却500ms
-	interacter.add_cooldown(300);
+	interaction.add_cooldown(300);
 
 	need_update_select_screen = true;
 }
@@ -68,22 +68,22 @@ void menu_page_function(void)
 		}
 	}
 
-	if (is_key_pressing(KEY_LEFT) && interacter.can_interact() && hide_info)
+	if (is_key_pressing(KEY_LEFT) && interaction.can_interact() && hide_info)
 	{
-		interacter.update_interaction_tick();
+		interaction.update_interaction_tick();
 		need_update_select_screen = true;
 		current_page = (current_page - 1 + PAGE_AMOUNT) % PAGE_AMOUNT;
 	}
-	if (is_key_pressing(KEY_RIGHT) && interacter.can_interact())
+	if (is_key_pressing(KEY_RIGHT) && interaction.can_interact())
 	{
-		interacter.update_interaction_tick();
+		interaction.update_interaction_tick();
 		need_update_select_screen = true;
 		current_page = (current_page + 1) % PAGE_AMOUNT;
 	}
 
 	if (is_key_on_pressed(KEY_A) && hide_info)
 	{
-		interacter.update_interaction_tick();
+		interaction.update_interaction_tick();
 		auto &page_display = page_displays[current_page];
 		set_display_function(page_display);
 	}

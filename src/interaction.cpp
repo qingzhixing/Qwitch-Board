@@ -1,22 +1,22 @@
-#include "interacter.hpp"
+#include "interaction.hpp"
 
-Interacter::Interacter(long interval_ms)
+Interaction::Interaction(const long interval_ms)
 {
 	interact_interval_ms = interval_ms;
 	update_interaction_tick();
 }
 
-void Interacter::update_interaction_tick()
+void Interaction::update_interaction_tick()
 {
 	last_interaction_tick = millis();
 }
 
-bool Interacter::can_interact()
+bool Interaction::can_interact() const
 {
 	return ((long)(millis()) - last_interaction_tick) >= interact_interval_ms;
 }
 
-void Interacter::add_cooldown(long cooldown_ms)
+void Interaction::add_cooldown(const long cooldown_ms)
 {
 	update_interaction_tick();
 	last_interaction_tick += cooldown_ms;

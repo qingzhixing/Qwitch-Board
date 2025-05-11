@@ -12,7 +12,7 @@ std::vector<PageDisplay> page_displays{};
 
 static PageDisplay current_page(nullptr, nullptr);
 
-static Interacter interacter(1500);
+static Interaction interaction(1500);
 static bool initialized = false;
 
 bool page_selectable = true;
@@ -65,13 +65,13 @@ void page_controller_loop(void)
 
 	if (!is_page_select_key_pressing())
 	{
-		interacter.update_interaction_tick();
+		interaction.update_interaction_tick();
 	}
 
 	long current_time_ms = millis();
-	if (interacter.can_interact())
+	if (interaction.can_interact())
 	{
-		interacter.update_interaction_tick();
+		interaction.update_interaction_tick();
 		if (page_selectable && current_page != menu_page)
 		{
 			set_display_function(menu_page);
