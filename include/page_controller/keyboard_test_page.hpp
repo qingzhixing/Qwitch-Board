@@ -2,7 +2,7 @@
 #ifndef KEYBOARD_TEST_PAGE_HPP
 #define KEYBOARD_TEST_PAGE_HPP
 
-#include "page_controller.hpp"
+#include <page_display.hpp>
 
 extern PageDisplay keyboard_test_page;
 

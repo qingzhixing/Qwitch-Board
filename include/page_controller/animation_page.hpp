@@ -2,7 +2,7 @@
 #ifndef ANIMATION_PAGE_HPP
 #define ANIMATION_PAGE_HPP
 
-#include "page_controller.hpp"
+#include <page_display.hpp>
 extern PageDisplay animation_page;
 
 void animation_page_initialize();

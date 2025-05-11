@@ -3,7 +3,7 @@
 #define LED_TEST_PAGE_HPP
 
 #include <led.hpp>
-#include "page_controller.hpp"
+#include <page_display.hpp>
 
 extern PageDisplay led_test_page;
 

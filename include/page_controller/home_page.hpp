@@ -2,7 +2,7 @@
 #ifndef HOME_PAGE_HPP
 #define HOME_PAGE_HPP
 
-#include "page_controller.hpp"
+#include <page_display.hpp>
 
 // Home Page
 void home_page_function(void);

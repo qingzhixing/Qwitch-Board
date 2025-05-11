@@ -1,7 +1,7 @@
 #pragma once
 #ifndef NEW_MENU_HPP
 #define NEW_MENU_HPP
-#include "page_controller.hpp"
+#include <page_display.hpp>
 
 extern PageDisplay new_menu;
 
