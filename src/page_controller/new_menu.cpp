@@ -2,6 +2,9 @@
 #include <oled.hpp>
 #include <bitmaps.hpp>
 
+PageDisplay new_menu = PageDisplay("New Menu", new_menu_function, new_menu_initialize, epd_bitmap_icon_oled);
+
+
 void new_menu_initialize()
 {
 	oled.clearBuffer();

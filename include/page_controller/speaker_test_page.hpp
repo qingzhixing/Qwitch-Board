@@ -2,6 +2,10 @@
 #ifndef SPEAKER_TEST_PAGE_HPP
 #define SPEAKER_TEST_PAGE_HPP
 
+#include "page_controller.hpp"
+
+extern PageDisplay speaker_test_page;
+
 void speaker_test_page_initialize();
 void speaker_test_page_function();
 

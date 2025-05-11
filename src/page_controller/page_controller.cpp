@@ -6,49 +6,55 @@
 #include "page_controller//led_test_page.hpp"
 #include "page_controller/animation_page.hpp"
 #include "page_controller/new_menu.hpp"
+#include "page_controller/menu_page.hpp"
 
-DisplayFunction current_function = ((void (*)(void))0);
-InitializeFunction current_initialize_function = ((void (*)(void))0);
+std::vector<PageDisplay> page_displays{};
+
+static PageDisplay current_page(nullptr, nullptr);
 
 static Interacter interacter(1500);
 static bool initialized = false;
 
 bool page_selectable = true;
 
-void page_controller_init(void)
+void register_page_display(PageDisplay &&page_display)
 {
-
-	set_display_function(home_page_function, home_page_initialize);
-
-	register_page_display(PageDisplay("Home Page", home_page_function, home_page_initialize));
-	register_page_display(PageDisplay("Kbd Test Page", keyboard_test_page_function, keyboard_test_page_initialize));
-	register_page_display(PageDisplay("Speaker Test Page", speaker_test_page_function, speaker_test_page_initialize));
-	register_page_display(PageDisplay("LED Test Page", led_test_page_function, led_test_page_init));
-	register_page_display(PageDisplay("Animation Page", animation_page_function, animation_page_initialize));
-	register_page_display(PageDisplay("New Menu", new_menu_function, new_menu_initialize));
+	page_displays.emplace_back(std::move(page_display));
+}
+void register_page_display(const PageDisplay &page_display)
+{
+	page_displays.push_back(page_display);
 }
 
-void set_display_function(DisplayFunction function, InitializeFunction initialize_function)
+void page_controller_init(void)
 {
-	current_function = function;
-	if (initialize_function)
-	{
-		current_initialize_function = initialize_function;
-		initialized = false;
-	}
+	set_display_function(home_page);
+
+	register_page_display(home_page);
+	register_page_display(keyboard_test_page);
+	register_page_display(speaker_test_page);
+	register_page_display(led_test_page);
+	register_page_display(animation_page);
+	register_page_display(new_menu);
+}
+
+void set_display_function(PageDisplay page_display)
+{
+	current_page = page_display;
+	initialized = false;
 }
 
 void display_one_frame(void)
 {
 	if (!initialized)
 	{
-		current_initialize_function();
+		current_page.initialize_function();
 		initialized = true;
 	}
 
-	if (current_function)
+	if (current_page.function)
 	{
-		current_function();
+		current_page.function();
 	}
 }
 
@@ -66,9 +72,9 @@ void page_controller_loop(void)
 	if (interacter.can_interact())
 	{
 		interacter.update_interaction_tick();
-		if (page_selectable && current_function != page_select_function)
+		if (page_selectable && current_page != menu_page)
 		{
-			set_display_function(page_select_function, page_select_initialize);
+			set_display_function(menu_page);
 		}
 	}
 }

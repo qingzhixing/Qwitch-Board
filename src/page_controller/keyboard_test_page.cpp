@@ -5,6 +5,8 @@
 #include <Arduino.h>
 #include <bitmaps.hpp>
 
+PageDisplay keyboard_test_page = PageDisplay("Kbd Test Page", keyboard_test_page_function, keyboard_test_page_initialize, epd_bitmap_icon_keyboard);
+
 void keyboard_test_page_initialize(void)
 {
 }

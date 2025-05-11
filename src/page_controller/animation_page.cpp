@@ -3,6 +3,8 @@
 #include <curves.hpp>
 #include <oled.hpp>
 
+PageDisplay animation_page = PageDisplay("Animation Page", animation_page_function, animation_page_initialize);
+
 static bool move_right = true;
 static int start_x = 20;
 static int destinate_x = 87;

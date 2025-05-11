@@ -2,6 +2,8 @@
 #include <oled.hpp>
 #include "bitmaps.hpp"
 
+PageDisplay home_page = PageDisplay("Home Page", home_page_function, home_page_initialize);
+
 static const long bitmap_move_interval_ms = 100;
 static int move_direction_x = -1; // 1 for right, -1 for left
 static long last_move_time_ms = 0;

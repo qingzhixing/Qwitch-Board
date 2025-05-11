@@ -6,6 +6,8 @@
 
 static Interacter interacter(100);
 
+PageDisplay speaker_test_page = PageDisplay("Speaker Test Page", speaker_test_page_function, speaker_test_page_initialize);
+
 void speaker_test_page_initialize()
 {
 	interacter.add_cooldown(300);

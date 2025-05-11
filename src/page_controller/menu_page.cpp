@@ -2,10 +2,9 @@
 #include <oled.hpp>
 #include <Arduino.h>
 #include <keyboard.hpp>
-#include <vector>
 #include <interacter.hpp>
 
-static std::vector<PageDisplay> page_displays;
+PageDisplay menu_page = PageDisplay(menu_page_function, menu_page_initialize);
 
 #define PAGE_AMOUNT (page_displays.size())
 
@@ -15,10 +14,6 @@ static int current_page = 0;
 static bool hide_info = true;
 static bool need_update_select_screen = false;
 
-void register_page_display(PageDisplay &&page_display)
-{
-	page_displays.emplace_back(std::move(page_display));
-}
 void display_page_select_info(void)
 {
 	oled.clearBuffer();
@@ -36,7 +31,7 @@ void display_page_select_info(void)
 	hide_info = false;
 }
 
-void page_select_initialize(void)
+void menu_page_initialize(void)
 {
 	interacter.update_interaction_tick();
 
@@ -46,7 +41,7 @@ void page_select_initialize(void)
 	need_update_select_screen = true;
 }
 
-void page_select_function(void)
+void menu_page_function(void)
 {
 	if (page_displays.empty())
 	{
@@ -90,7 +85,7 @@ void page_select_function(void)
 	{
 		interacter.update_interaction_tick();
 		auto &page_display = page_displays[current_page];
-		set_display_function(page_display.function, page_display.initialize_function);
+		set_display_function(page_display);
 	}
 
 	if (need_update_select_screen && hide_info)
