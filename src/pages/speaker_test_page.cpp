@@ -7,7 +7,7 @@
 static Interaction interaction(100);
 
 PageDisplay speaker_test_page = PageDisplay("Speaker Test", speaker_test_page_function,
-                                            speaker_test_page_initialize, epd_bitmap_icon_speaker);
+                                            speaker_test_page_initialize, icon_speaker_bits);
 
 void speaker_test_page_initialize() {
 	interaction.add_cooldown(300);

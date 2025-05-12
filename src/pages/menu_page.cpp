@@ -5,7 +5,7 @@
 #include <keyboard.hpp>
 #include <interaction.hpp>
 
-PageDisplay menu_page = PageDisplay("Old Menu", menu_page_function, menu_page_initialize, epd_bitmap_icon_oled);
+PageDisplay menu_page = PageDisplay("Old Menu", menu_page_function, menu_page_initialize, icon_oled_bits);
 
 #define PAGE_AMOUNT (int(page_displays.size()))
 

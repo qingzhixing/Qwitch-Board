@@ -2,7 +2,7 @@
 #include <oled.hpp>
 #include "bitmaps.hpp"
 
-PageDisplay home_page = PageDisplay("Home Page", home_page_function, home_page_initialize, epd_bitmap_icon_home);
+PageDisplay home_page = PageDisplay("Home Page", home_page_function, home_page_initialize, icon_home_bits);
 
 static constexpr long bitmap_move_interval_ms = 100;
 static int move_direction_x = -1; // 1 for right, -1 for left

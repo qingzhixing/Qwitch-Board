@@ -14,7 +14,7 @@ public:
 	InitializeFunction initialize_function;
 	const unsigned char *page_icon;
 
-	PageDisplay(const char *page_name, DisplayFunction function, InitializeFunction initialize_function, const unsigned char *page_icon = epd_bitmap_icon_smile)
+	PageDisplay(const char *page_name, DisplayFunction function, InitializeFunction initialize_function, const unsigned char *page_icon = icon_smile_bits)
 	{
 		this->page_name = page_name;
 		this->function = function;
@@ -26,7 +26,7 @@ public:
 		this->page_name = "Unnamed Page";
 		this->function = function;
 		this->initialize_function = initialize_function;
-		this->page_icon = epd_bitmap_icon_smile;
+		this->page_icon = icon_smile_bits;
 	}
 	bool operator==(const PageDisplay &other) const
 	{

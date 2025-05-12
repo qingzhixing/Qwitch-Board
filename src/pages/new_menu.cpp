@@ -5,7 +5,7 @@
 #include <interaction.hpp>
 #include <keyboard.hpp>
 
-PageDisplay new_menu = PageDisplay("New Menu", new_menu_function, new_menu_initialize, epd_bitmap_icon_oled);
+PageDisplay new_menu = PageDisplay("New Menu", new_menu_function, new_menu_initialize, icon_oled_bits);
 
 // 连续交互间隔
 static Interaction interaction(200);
@@ -46,22 +46,22 @@ static void display_menu() {
 
 	// draw first
 	current_page = &page_displays[(current_page_index - 1 + page_amount) % page_amount];
-	oled.drawBitmap(0, 0, 128 / 8, 20, epd_bitmap_background_normal);
-	oled.drawBitmap(4, 2, 16 / 8, 16, current_page->page_icon);
+	oled.drawXBM(0, 0, 128, 20, background_normal_bits);
+	oled.drawXBM(4, 2, 16, 16, current_page->page_icon);
 	oled.setFont(NORMAL_FONT);
 	oled.drawStr(24, 15, current_page->page_name);
 
 	// second page
 	current_page = &page_displays[current_page_index];
-	oled.drawBitmap(0, 22, 128 / 8, 20, epd_bitmap_background_center);
-	oled.drawBitmap(4, 24, 16 / 8, 16, current_page->page_icon);
+	oled.drawXBM(0, 22, 128, 20, background_center_bits);
+	oled.drawXBM(4, 24, 16, 16, current_page->page_icon);
 	oled.setFont(BOLD_FONT);
 	oled.drawStr(24, 37, current_page->page_name);
 
 	// third page
 	current_page = &page_displays[(current_page_index + 1) % page_amount];
-	oled.drawBitmap(0, 44, 128 / 8, 20, epd_bitmap_background_normal);
-	oled.drawBitmap(4, 46, 16 / 8, 16, current_page->page_icon);
+	oled.drawXBM(0, 44, 128, 20, background_normal_bits);
+	oled.drawXBM(4, 46, 16, 16, current_page->page_icon);
 	oled.setFont(NORMAL_FONT);
 	oled.drawStr(24, 58, current_page->page_name);
 	oled.sendBuffer();

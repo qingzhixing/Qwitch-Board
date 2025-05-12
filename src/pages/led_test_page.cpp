@@ -5,7 +5,7 @@
 #include <oled.hpp>
 
 PageDisplay led_test_page = PageDisplay("LED Test Page", led_test_page_function, led_test_page_init,
-                                        epd_bitmap_icon_smile);
+                                        icon_smile_bits);
 
 void led_test_page_init() {
 }

@@ -4,7 +4,7 @@
 #include <oled.hpp>
 
 PageDisplay animation_page = PageDisplay("Animation Page", animation_page_function, animation_page_initialize,
-                                         epd_bitmap_icon_ball);
+                                         icon_ball_bits);
 
 static bool move_right = true;
 static int start_x = 20;
