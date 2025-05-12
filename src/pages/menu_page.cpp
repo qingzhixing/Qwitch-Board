@@ -5,7 +5,7 @@
 #include <keyboard.hpp>
 #include <interaction.hpp>
 
-extern PageDisplay menu_page = PageDisplay(menu_page_function, menu_page_initialize);
+PageDisplay menu_page = PageDisplay("Old Menu", menu_page_function, menu_page_initialize, epd_bitmap_icon_oled);
 
 #define PAGE_AMOUNT (int(page_displays.size()))
 
@@ -15,8 +15,7 @@ static int current_page = 0;
 static bool hide_info = true;
 static bool need_update_select_screen = false;
 
-void display_page_select_info()
-{
+void display_page_select_info() {
 	oled.clearBuffer();
 
 	oled.drawBox(0, 0, 128, 16);
@@ -32,8 +31,7 @@ void display_page_select_info()
 	hide_info = false;
 }
 
-void menu_page_initialize()
-{
+void menu_page_initialize() {
 	interaction.update_interaction_tick();
 
 	// 冷却500ms
@@ -42,10 +40,8 @@ void menu_page_initialize()
 	need_update_select_screen = true;
 }
 
-void menu_page_function()
-{
-	if (page_displays.empty())
-	{
+void menu_page_function() {
+	if (page_displays.empty()) {
 		oled.clearBuffer();
 		oled.drawStr(30, 10, "!!ERROR!!");
 		oled.drawStr(5, 31, "No registered page!");
@@ -53,15 +49,11 @@ void menu_page_function()
 		return;
 	}
 
-	if (is_key_on_pressed(KEY_B))
-	{
+	if (is_key_on_pressed(KEY_B)) {
 		hide_info = !hide_info;
-		if (!hide_info)
-		{
+		if (!hide_info) {
 			display_page_select_info();
-		}
-		else
-		{
+		} else {
 			oled.clearBuffer();
 			oled.sendBuffer();
 
@@ -69,28 +61,24 @@ void menu_page_function()
 		}
 	}
 
-	if (is_key_pressing(KEY_LEFT) && interaction.can_interact() && hide_info)
-	{
+	if (is_key_pressing(KEY_LEFT) && interaction.can_interact() && hide_info) {
 		interaction.update_interaction_tick();
 		need_update_select_screen = true;
 		current_page = (current_page - 1 + PAGE_AMOUNT) % PAGE_AMOUNT;
 	}
-	if (is_key_pressing(KEY_RIGHT) && interaction.can_interact())
-	{
+	if (is_key_pressing(KEY_RIGHT) && interaction.can_interact()) {
 		interaction.update_interaction_tick();
 		need_update_select_screen = true;
 		current_page = (current_page + 1) % PAGE_AMOUNT;
 	}
 
-	if (is_key_on_pressed(KEY_A) && hide_info)
-	{
+	if (is_key_on_pressed(KEY_A) && hide_info) {
 		interaction.update_interaction_tick();
 		auto &page_display = page_displays[current_page];
 		set_display_function(page_display);
 	}
 
-	if (need_update_select_screen && hide_info)
-	{
+	if (need_update_select_screen && hide_info) {
 		char display_str[32] = {};
 		auto &page_display = page_displays[current_page];
 		snprintf(display_str, sizeof(display_str), "@[%s]", page_display.page_name);

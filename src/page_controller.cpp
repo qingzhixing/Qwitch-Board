@@ -19,17 +19,15 @@ static bool initialized = false;
 
 bool page_selectable = true;
 
-void register_page_display(PageDisplay &&page_display)
-{
+void register_page_display(PageDisplay &&page_display) {
 	page_displays.emplace_back(page_display);
 }
-void register_page_display(const PageDisplay &page_display)
-{
+
+void register_page_display(const PageDisplay &page_display) {
 	page_displays.push_back(page_display);
 }
 
-void page_controller_init()
-{
+void page_controller_init() {
 	set_display_function(home_page);
 
 	register_page_display(home_page);
@@ -40,42 +38,34 @@ void page_controller_init()
 	register_page_display(new_menu);
 }
 
-void set_display_function(const PageDisplay &page_display)
-{
+void set_display_function(const PageDisplay &page_display) {
 	current_page = page_display;
 	initialized = false;
 }
 
-void display_one_frame()
-{
-	if (!initialized)
-	{
+void display_one_frame() {
+	if (!initialized) {
 		current_page.initialize_function();
 		initialized = true;
 	}
 
-	if (current_page.function)
-	{
+	if (current_page.function) {
 		current_page.function();
 	}
 }
 
 // 请在 loop() 中调用该函数
-void page_controller_loop()
-{
+void page_controller_loop() {
 	display_one_frame();
 
-	if (!is_page_select_key_pressing())
-	{
+	if (!is_page_select_key_pressing()) {
 		interaction.update_interaction_tick();
 	}
 
-	if (interaction.can_interact())
-	{
+	if (interaction.can_interact()) {
 		interaction.update_interaction_tick();
-		if (page_selectable && current_page != menu_page)
-		{
-			set_display_function(menu_page);
+		if (page_selectable && current_page != new_menu) {
+			set_display_function(new_menu);
 		}
 	}
 }

@@ -5,15 +5,13 @@
 #include <Arduino.h>
 #include <bitmaps.hpp>
 
-extern PageDisplay keyboard_test_page = PageDisplay("Kbd Test Page", keyboard_test_page_function, keyboard_test_page_initialize, epd_bitmap_icon_keyboard);
+PageDisplay keyboard_test_page = PageDisplay("Kbd Test Page", keyboard_test_page_function,
+                                             keyboard_test_page_initialize, epd_bitmap_icon_keyboard);
 
-void keyboard_test_page_initialize()
-{
+void keyboard_test_page_initialize() {
 }
 
-void keyboard_test_page_function()
-{
-
+void keyboard_test_page_function() {
 	bool UP = digitalRead(KEY_UP) == KEY_PRESSING;
 	bool DOWN = digitalRead(KEY_DOWN) == KEY_PRESSING;
 	bool LEFT = digitalRead(KEY_LEFT) == KEY_PRESSING;
@@ -29,58 +27,40 @@ void keyboard_test_page_function()
 
 	// 画圆表示按键状态
 	// Up Down Left Right
-	if (UP)
-	{
+	if (UP) {
 		oled.drawDisc(31, 28, 5);
-	}
-	else
-	{
+	} else {
 		oled.drawCircle(31, 28, 5);
 	}
 
-	if (DOWN)
-	{
+	if (DOWN) {
 		oled.drawDisc(31, 50, 5);
-	}
-	else
-	{
+	} else {
 		oled.drawCircle(31, 50, 5);
 	}
 
-	if (LEFT)
-	{
+	if (LEFT) {
 		oled.drawDisc(20, 39, 5);
-	}
-	else
-	{
+	} else {
 		oled.drawCircle(20, 39, 5);
 	}
 
-	if (RIGHT)
-	{
+	if (RIGHT) {
 		oled.drawDisc(42, 39, 5);
-	}
-	else
-	{
+	} else {
 		oled.drawCircle(42, 39, 5);
 	}
 
 	// A B
-	if (A)
-	{
+	if (A) {
 		oled.drawDisc(90, 30, 5);
-	}
-	else
-	{
+	} else {
 		oled.drawCircle(90, 30, 5);
 	}
 
-	if (B)
-	{
+	if (B) {
 		oled.drawDisc(105, 42, 5);
-	}
-	else
-	{
+	} else {
 		oled.drawCircle(105, 42, 5);
 	}
 

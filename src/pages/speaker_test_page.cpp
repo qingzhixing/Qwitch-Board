@@ -6,15 +6,14 @@
 
 static Interaction interaction(100);
 
-extern PageDisplay speaker_test_page = PageDisplay("Speaker Test Page", speaker_test_page_function, speaker_test_page_initialize);
+PageDisplay speaker_test_page = PageDisplay("Speaker Test", speaker_test_page_function,
+                                            speaker_test_page_initialize, epd_bitmap_icon_speaker);
 
-void speaker_test_page_initialize()
-{
+void speaker_test_page_initialize() {
 	interaction.add_cooldown(300);
 }
 
-static void display_speaker_info()
-{
+static void display_speaker_info() {
 	char buffer[32]{};
 
 	oled.clearBuffer();
@@ -35,46 +34,38 @@ static void display_speaker_info()
 	oled.sendBuffer();
 }
 
-static void handle_speaker_interaction()
-{
-	if (is_page_select_key_pressing())
-	{
+static void handle_speaker_interaction() {
+	if (is_page_select_key_pressing()) {
 		return;
 	}
 
-	if (is_key_pressing(KEY_LEFT) && interaction.can_interact())
-	{
+	if (is_key_pressing(KEY_LEFT) && interaction.can_interact()) {
 		set_speaker_frequency(get_speaker_frequency_hz() - 100);
 		interaction.update_interaction_tick();
 		return;
 	}
-	if (is_key_pressing(KEY_RIGHT) && interaction.can_interact())
-	{
+	if (is_key_pressing(KEY_RIGHT) && interaction.can_interact()) {
 		set_speaker_frequency(get_speaker_frequency_hz() + 100);
 		interaction.update_interaction_tick();
 		return;
 	}
-	if (is_key_pressing(KEY_UP) && interaction.can_interact())
-	{
+	if (is_key_pressing(KEY_UP) && interaction.can_interact()) {
 		set_speaker_volume_percent(get_speaker_volumn_percent() + 0.05f);
 		interaction.update_interaction_tick();
 		return;
 	}
-	if (is_key_pressing(KEY_DOWN) && interaction.can_interact())
-	{
+	if (is_key_pressing(KEY_DOWN) && interaction.can_interact()) {
 		set_speaker_volume_percent(get_speaker_volumn_percent() - 0.05f);
 		interaction.update_interaction_tick();
 		return;
 	}
-	if (is_key_on_pressed(KEY_A))
-	{
+	if (is_key_on_pressed(KEY_A)) {
 		toggle_speaker();
 		return;
 	}
 }
 
-void speaker_test_page_function()
-{
+void speaker_test_page_function() {
 	handle_speaker_interaction();
 	display_speaker_info();
 }
