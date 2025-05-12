@@ -25,7 +25,7 @@ static void interaction_handler() {
 		return;
 	}
 
-	auto page_amount = static_cast<int>(page_displays.size());
+	const auto page_amount = static_cast<int>(page_displays.size());
 	if (is_key_on_pressed(KEY_UP) || (is_key_pressing(KEY_UP) && interaction.can_interact())) {
 		current_page_index = (current_page_index - 1 + page_amount) % page_amount;
 		interaction.update_interaction_tick();
@@ -40,30 +40,34 @@ static void interaction_handler() {
 }
 
 static void display_menu() {
-	auto page_amount = static_cast<int>(page_displays.size());
+	const auto page_amount = static_cast<int>(page_displays.size());
 
 	const PageDisplay *current_page = nullptr;
 
+	oled.clearBuffer();
+
 	// draw first
 	current_page = &page_displays[(current_page_index - 1 + page_amount) % page_amount];
-	oled.drawXBM(0, 0, 128, 20, background_normal_bits);
 	oled.drawXBM(4, 2, 16, 16, current_page->page_icon);
-	oled.setFont(NORMAL_FONT);
+	oled.drawXBM(0, 0, 128, 20, background_normal_bits);
+	oled.setFont(MENU_NORMAL_FONT);
 	oled.drawStr(24, 15, current_page->page_name);
 
 	// second page
 	current_page = &page_displays[current_page_index];
-	oled.drawXBM(0, 22, 128, 20, background_center_bits);
 	oled.drawXBM(4, 24, 16, 16, current_page->page_icon);
-	oled.setFont(BOLD_FONT);
+	oled.drawXBM(0, 22, 128, 20, background_center_bits);
+	oled.setFont(MENU_BOLD_FONT);
 	oled.drawStr(24, 37, current_page->page_name);
 
 	// third page
 	current_page = &page_displays[(current_page_index + 1) % page_amount];
-	oled.drawXBM(0, 44, 128, 20, background_normal_bits);
 	oled.drawXBM(4, 46, 16, 16, current_page->page_icon);
-	oled.setFont(NORMAL_FONT);
+	oled.drawXBM(0, 44, 128, 20, background_normal_bits);
+	oled.setFont(MENU_NORMAL_FONT);
 	oled.drawStr(24, 58, current_page->page_name);
+
+	oled.setFont(TEXT_NORMAL_FONT);
 	oled.sendBuffer();
 }
 
