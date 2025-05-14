@@ -1,10 +1,11 @@
 #pragma once
-#ifndef MENU_PAGE_HPP
-#define MENU_PAGE_HPP
+#ifndef NEW_MENU_HPP
+#define NEW_MENU_HPP
 #include <page_display.hpp>
+
 extern PageDisplay menu_page;
 
-void menu_page_initialize();
-void menu_page_function();
+void new_menu_initialize();
+void new_menu_function();
 
-#endif //! MENU_PAGE_HPP
+#endif //! NEW_MENU_HPP
