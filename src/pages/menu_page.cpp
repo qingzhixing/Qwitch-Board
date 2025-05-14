@@ -14,14 +14,14 @@ enum MenuAnimationState {
 
 // Animation
 static MenuAnimationState animation_state;
-static long animation_duration_ms = 300;
+static long animation_duration_ms = 800;
 static long animation_start_tick_ms = 0;
 static long animation_delta_y = 0;
 
 PageDisplay menu_page = PageDisplay("New Menu", new_menu_function, new_menu_initialize, icon_oled_bits);
 
 // 连续交互间隔
-static Interaction interaction(200);
+static Interaction interaction(500);
 
 static int current_page_index = 0;
 
@@ -52,16 +52,6 @@ static void interaction_handler() {
 		current_page_index = (current_page_index + 1) % page_amount;
 		animation_state = MOVE_DOWN;
 		animation_start_tick_ms = static_cast<long>(millis());
-		interaction.update_interaction_tick();
-		return;
-	}
-	if (is_key_on_pressed(KEY_RIGHT) || (is_key_pressing(KEY_RIGHT) && interaction.can_interact())) {
-		animation_delta_y++;
-		interaction.update_interaction_tick();
-		return;
-	}
-	if (is_key_on_pressed(KEY_LEFT) || (is_key_pressing(KEY_LEFT) && interaction.can_interact())) {
-		animation_delta_y--;
 		interaction.update_interaction_tick();
 		return;
 	}
