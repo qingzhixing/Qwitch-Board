@@ -1,12 +1,13 @@
 #include <Arduino.h>
+#include <hardware.hpp>
 #include <keyboard.hpp>
 #include <oled.hpp>
 #include <page_controller.hpp>
 #include <led.hpp>
 #include <speaker.hpp>
+#include <nvs_controller.hpp>
 
-void setup()
-{
+void setup() {
 	oled_init();
 	keyboard_init();
 	led_init();
@@ -16,12 +17,14 @@ void setup()
 	led_on();
 
 	page_controller_init();
+	nvs_controller_init();
 }
 
-void loop()
-{
+void loop() {
 	// 硬件事件
 	update_keyboard_state();
+
+	hardware_record();
 
 	// 交互逻辑
 	page_controller_loop();

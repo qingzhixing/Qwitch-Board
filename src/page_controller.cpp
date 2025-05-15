@@ -1,6 +1,7 @@
 #include "page_controller.hpp"
 #include <interaction.hpp>
 #include <keyboard.hpp>
+#include <pages/nvs_data_page.hpp>
 
 #include "pages/keyboard_test_page.hpp"
 #include "pages/home_page.hpp"
@@ -36,6 +37,7 @@ void page_controller_init() {
 	register_page_display(led_test_page);
 	register_page_display(animation_page);
 	register_page_display(old_menu);
+	register_page_display(nvs_data_page);
 }
 
 void set_display_function(const PageDisplay &page_display) {
