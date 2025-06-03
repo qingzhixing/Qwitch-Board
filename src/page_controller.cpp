@@ -1,7 +1,7 @@
 #include "page_controller.hpp"
 #include <interaction.hpp>
 #include <keyboard.hpp>
-#include <pages/game_2048.hpp>
+#include <pages/game_2048_page.hpp>
 #include <pages/nvs_data_page.hpp>
 
 #include "pages/keyboard_test_page.hpp"
