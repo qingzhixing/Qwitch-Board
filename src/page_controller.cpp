@@ -1,7 +1,7 @@
 #include "page_controller.hpp"
+#include <../include/games/game_2048/game_2048_page.hpp>
 #include <interaction.hpp>
 #include <keyboard.hpp>
-#include <pages/game_2048_page.hpp>
 #include <pages/nvs_data_page.hpp>
 
 #include "pages/keyboard_test_page.hpp"
@@ -39,7 +39,7 @@ void page_controller_init() {
 	register_page_display(animation_page);
 	register_page_display(old_menu);
 	register_page_display(nvs_data_page);
-	register_page_display(game_2048);
+	register_page_display(game_2048_page);
 }
 
 void set_display_function(const PageDisplay &page_display) {

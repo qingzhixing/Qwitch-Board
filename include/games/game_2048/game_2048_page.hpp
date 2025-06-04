@@ -2,16 +2,19 @@
 // Created by qingzhixing on 2025/5/16.
 //
 #pragma once
-#ifndef GAME_2048_HPP
-#define GAME_2048_HPP
+#ifndef GAME_2048_PAGE_HPP
+#define GAME_2048_PAGE_HPP
 
 #include <page_display.hpp>
+#include "Game_2048.hpp"
 
-extern PageDisplay game_2048;
+extern PageDisplay game_2048_page;
 
 void game_2048_page_init();
 
-void game_2048_update();
+void game_2048_page_update();
+
+extern Game_2048 game_2048_instance;
 
 // 'boarder_2048', 64x64px
 const unsigned char boarder_2048_bits[] = {
@@ -62,4 +65,4 @@ const unsigned char text_2048_boarder_bits[] = {
 	0x1c, 0x11, 0x00, 0x00, 0x00, 0x00, 0x11, 0x07
 };
 
-#endif //GAME_2048_HPP
+#endif //GAME_2048_PAGE_HPP
