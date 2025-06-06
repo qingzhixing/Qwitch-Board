@@ -1,11 +1,12 @@
 #include <Arduino.h>
 #include <hardware.hpp>
 #include <keyboard.hpp>
+#include <led.hpp>
+#include <nvs_controller.hpp>
 #include <oled.hpp>
 #include <page_controller.hpp>
-#include <led.hpp>
 #include <speaker.hpp>
-#include <nvs_controller.hpp>
+#include <Bluetooth.hpp>
 
 void setup() {
 	oled_init();
@@ -13,6 +14,7 @@ void setup() {
 	led_init();
 	speaker_init();
 	Serial.begin(115200);
+    Bluetooth::init();
 
 	led_on();
 
@@ -23,7 +25,7 @@ void setup() {
 void loop() {
 	// 硬件事件
 	update_keyboard_state();
-
+    Bluetooth::update();
 	hardware_record();
 
 	// 交互逻辑

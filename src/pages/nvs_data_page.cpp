@@ -37,21 +37,20 @@ static void synchronous_data() {
 static void display_data() {
     oled.clearBuffer();
     oled.setFont(TEXT_NORMAL_FONT);
-    oled.drawBox(0, 0, 128, 16);
+    oled.drawBox(0, 0, 128, 12);
     oled.setDrawColor(0);
-    oled.drawStr(30, 12, "NVS Data");
+    oled.drawStr(30, 10, "NVS Data");
     oled.setDrawColor(1);
 
-    char buffer[64];
-    sprintf(buffer, "Reboot: %d", reboot_time);
-    oled.drawStr(5, 26, buffer);
+    oled.drawStr(5, 22, String("Reboot: "+String(reboot_time)).c_str());
 
-    sprintf(buffer, "Keypress A: %d", keypress_A);
-    oled.drawStr(5, 36, buffer);
-
-    sprintf(buffer, "Keypress B: %d", keypress_B);
-    oled.drawStr(5, 46, buffer);
-
+    oled.drawStr(5, 32, "Keypress: ");
+    oled.drawStr(5, 44, String("U: "+String(keypress_UP)).c_str());
+    oled.drawStr(64, 44, String("D: "+String(keypress_DOWN)).c_str());
+    oled.drawStr(5, 54, String("L: "+String(keypress_LEFT)).c_str());
+    oled.drawStr(64, 54, String("R: "+String(keypress_RIGHT)).c_str());
+    oled.drawStr(5, 64, String("A: "+String(keypress_A)).c_str());
+    oled.drawStr(64, 64, String("B: "+String(keypress_B)).c_str());
     oled.sendBuffer();
 }
 
