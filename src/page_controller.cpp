@@ -1,16 +1,17 @@
 #include "page_controller.hpp"
-#include <../include/games/game_2048/game_2048_page.hpp>
+#include <games/game_2048/game_2048_page.hpp>
 #include <interaction.hpp>
 #include <keyboard.hpp>
 #include <pages/nvs_data_page.hpp>
 
-#include "pages/keyboard_test_page.hpp"
-#include "pages/home_page.hpp"
-#include "pages/speaker_test_page.hpp"
-#include "pages/led_test_page.hpp"
 #include "pages/animation_page.hpp"
-#include "pages/old_menu.hpp"
+#include "pages/bluetooth_info_page.hpp"
+#include "pages/home_page.hpp"
+#include "pages/keyboard_test_page.hpp"
+#include "pages/led_test_page.hpp"
 #include "pages/menu_page.hpp"
+#include "pages/old_menu.hpp"
+#include "pages/speaker_test_page.hpp"
 
 std::vector<PageDisplay> page_displays{};
 
@@ -37,9 +38,9 @@ void page_controller_init() {
 	register_page_display(speaker_test_page);
 	register_page_display(led_test_page);
 	register_page_display(animation_page);
-	register_page_display(old_menu);
 	register_page_display(nvs_data_page);
 	register_page_display(game_2048_page);
+    register_page_display(bluetooth_info_page);
 }
 
 void set_display_function(const PageDisplay &page_display) {
@@ -53,8 +54,8 @@ void display_one_frame() {
 		initialized = true;
 	}
 
-	if (current_page.function) {
-		current_page.function();
+	if (current_page.update_function) {
+		current_page.update_function();
 	}
 }
 

@@ -6,6 +6,7 @@
 #include <Arduino.h>
 #include <BLEDevice.h>
 
+#include "BoardCharacteristicCallbacks.hpp"
 #include "BoardServerCallbacks.hpp"
 
 // Define static member variables
@@ -21,25 +22,30 @@ BLECharacteristic* Bluetooth::systemIdCharacteristic = nullptr;
 
 void Bluetooth::init()
 {
-    BLEDevice::init("点我自动下载原神");
+    BLEDevice::init("Qwitch Board");
 
     pServer = BLEDevice::createServer();
-    auto callbacks = new BoardServerCallbacks();
+
+    const auto callbacks = new BoardServerCallbacks();
     callbacks->connection_hook = []() { device_connected = true; };
     callbacks->disconnection_hook = []() { device_connected = false; };
+
     pServer->setCallbacks(callbacks);
 
     batteryService = pServer->createService(BLUETOOTH_BATTERY_SERVICE_UUID);
+
     systemIdCharacteristic = batteryService->createCharacteristic(
         SYSTEM_ID_CHARACTERISTIC_UUID,
         BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_WRITE | BLECharacteristic::PROPERTY_NOTIFY |
             BLECharacteristic::PROPERTY_INDICATE);
+
     // 设置System ID的值
     systemIdCharacteristic->setValue("0x55aa");
+    systemIdCharacteristic->setCallbacks(new BoardCharacteristicCallbacks());
 
     // 添加客户端特征配置描述符（Client Characteristic Configuration Descriptor）
     // 用于客户端配置通知和指示
-    auto pClientConfigDescriptor = new BLEDescriptor(
+    const auto pClientConfigDescriptor = new BLEDescriptor(
         BLEUUID(static_cast<uint16_t>(0x2902)), // 0x2902 是蓝牙技术联盟定义的客户端特征配置描述符的 UUID
         2 // 最大长度为 2 字节，用于存储通知和指示的使能状态
     );
