@@ -17,8 +17,6 @@ void page_controller_loop();
 void page_controller_init();
 
 // 页面选择
-void menu_page_function();
-void menu_page_initialize();
 void register_page_display(PageDisplay &&page_display);
 void register_page_display(const PageDisplay &page_display);
 

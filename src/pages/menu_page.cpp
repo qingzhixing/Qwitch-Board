@@ -18,7 +18,7 @@ static long animation_duration_ms = 800;
 static long animation_start_tick_ms = 0;
 static long animation_delta_y = 0;
 
-PageDisplay menu_page = PageDisplay("New Menu", new_menu_function, new_menu_initialize, icon_oled_bits);
+PageDisplay menu_page = PageDisplay("New Menu", menu_update, menu_initialize, icon_oled_bits);
 
 // 连续交互间隔
 static Interaction interaction(500);
@@ -26,7 +26,7 @@ static Interaction interaction(500);
 static int current_page_index = 0;
 
 
-void new_menu_initialize() {
+void menu_initialize() {
 	interaction.update_interaction_tick();
 	interaction.add_cooldown(300);
 	oled.clearBuffer();
@@ -115,7 +115,9 @@ static void animation_handler() {
 	if (elapsed > animation_duration_ms) {
 		animation_state = MOVE_STOP;
 	}
-	const auto animation_process = 1.0f * elapsed / animation_duration_ms;
+	const auto animation_process = 1.0f *
+	    static_cast<float>(elapsed) / static_cast<float>(animation_duration_ms);
+
 	if (animation_state == MOVE_UP) {
 		animation_delta_y = static_cast<long>(lerp(-22, 0, easeOutQuint(animation_process)));
 	} else if (animation_state == MOVE_DOWN) {
@@ -123,8 +125,12 @@ static void animation_handler() {
 	}
 }
 
-void new_menu_function() {
-	interaction_handler();
-	animation_handler();
-	display_menu();
+void menu_update()
+{
+    interaction_handler();
+    animation_handler();
+    display_menu();
 }
+
+void MenuPage::update() {menu_update();}
+void MenuPage::initialize() {menu_initialize();}

@@ -25,3 +25,12 @@ void bluetooth_info_page_update()
 
     oled.sendBuffer();
 }
+
+void BluetoothInfoPage::update()
+{
+    bluetooth_info_page_update();
+}
+void BluetoothInfoPage::initialize()
+{
+    bluetooth_info_page_init();
+}
