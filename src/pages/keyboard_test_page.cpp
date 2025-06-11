@@ -5,9 +5,7 @@
 #include <keyboard.hpp>
 #include <oled.hpp>
 
-PageDisplay keyboard_test_page =
-    PageDisplay("Kbd Test Page", keyboard_test_page_update, keyboard_test_page_initialize, icon_keyboard_bits);
-
+NewPageDisplay* keyboard_test_page = new KeyboardTestPage();
 void keyboard_test_page_initialize() {}
 
 void keyboard_test_page_update()
@@ -78,5 +76,7 @@ void keyboard_test_page_update()
     oled.sendBuffer();
 }
 
-void KeyboardTestPage::update() { keyboard_test_page_update(); }
-void KeyboardTestPage::initialize() { keyboard_test_page_initialize(); }
+void KeyboardTestPage::update() const { keyboard_test_page_update(); }
+void KeyboardTestPage::initialize() const { keyboard_test_page_initialize(); }
+std::string KeyboardTestPage::get_name() const { return "Kbd Test Page"; }
+const unsigned char* KeyboardTestPage::get_icon() const { return icon_keyboard_bits; }

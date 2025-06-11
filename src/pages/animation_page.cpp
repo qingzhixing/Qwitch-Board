@@ -3,8 +3,9 @@
 #include <curves.hpp>
 #include <oled.hpp>
 
-PageDisplay animation_page =
-    PageDisplay("Animation Page", animation_page_update, animation_page_initialize, icon_ball_bits);
+#include "bitmaps.hpp"
+
+NewPageDisplay* animation_page = new AnimationPage();
 
 static bool move_right = true;
 static int start_x = 20;
@@ -48,6 +49,10 @@ void animation_page_update()
     }
 }
 
-void AnimationPage::update() { animation_page_update(); }
+void AnimationPage::update() const { animation_page_update(); }
 
-void AnimationPage::initialize() { animation_page_initialize(); }
+void AnimationPage::initialize() const { animation_page_initialize(); }
+
+std::string AnimationPage::get_name() const { return "Animation Page"; }
+
+const unsigned char* AnimationPage::get_icon() const { return icon_ball_bits; }

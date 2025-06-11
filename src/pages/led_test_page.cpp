@@ -6,7 +6,9 @@
 
 #include <led.hpp>
 
-PageDisplay led_test_page = PageDisplay("LED Test Page", led_test_page_update, led_test_page_init, icon_smile_bits);
+#include "bitmaps.hpp"
+
+NewPageDisplay* led_test_page = new LEDTestPage();
 
 void led_test_page_init() {}
 
@@ -50,5 +52,7 @@ void led_test_page_update()
     display_handler();
 }
 
-void LedTestPage::update() { led_test_page_update(); }
-void LedTestPage::initialize() { led_test_page_init(); }
+void LEDTestPage::update() const { led_test_page_update(); }
+void LEDTestPage::initialize() const { led_test_page_init(); }
+std::string LEDTestPage::get_name() const { return "LED Test Page"; }
+const unsigned char* LEDTestPage::get_icon() const { return icon_led_bits; }

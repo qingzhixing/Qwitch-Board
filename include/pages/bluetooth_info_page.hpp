@@ -5,10 +5,10 @@
 #ifndef BLUETOOTH_INFO_PAGE_HPP
 #define BLUETOOTH_INFO_PAGE_HPP
 
-#include <page_display.hpp>
+
 
 #include <NewPageDisplay.hpp>
-extern PageDisplay bluetooth_info_page;
+extern NewPageDisplay* bluetooth_info_page;
 
 void bluetooth_info_page_init();
 void bluetooth_info_page_update();
@@ -16,8 +16,10 @@ void bluetooth_info_page_update();
 class BluetoothInfoPage final : public NewPageDisplay
 {
 public:
-    void update() override;
-    void initialize() override;
+    void update() const override;
+    void initialize() const override;
+    std::string get_name() const override;
+    const unsigned char* get_icon() const override;
 };
 
 #endif // BLUETOOTH_INFO_PAGE_HPP

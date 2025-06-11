@@ -4,10 +4,11 @@
 #include <oled.hpp>
 #include <speaker.hpp>
 
+#include "bitmaps.hpp"
+
 static Interaction interaction(100);
 
-PageDisplay speaker_test_page =
-    PageDisplay("Speaker Test", speaker_test_page_update, speaker_test_page_initialize, icon_speaker_bits);
+NewPageDisplay* speaker_test_page = new SpeakerTestPage();
 
 void speaker_test_page_initialize() { interaction.add_cooldown(300); }
 
@@ -77,5 +78,7 @@ void speaker_test_page_update()
     display_speaker_info();
 }
 
-void SpeakerTestPage::update() { speaker_test_page_update(); }
-void SpeakerTestPage::initialize() { speaker_test_page_initialize(); }
+void SpeakerTestPage::update() const { speaker_test_page_update(); }
+void SpeakerTestPage::initialize() const { speaker_test_page_initialize(); }
+std::string SpeakerTestPage::get_name() const { return "Speaker Test"; }
+const unsigned char* SpeakerTestPage::get_icon() const { return icon_speaker_bits; }

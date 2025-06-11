@@ -6,31 +6,27 @@
 #include <Bluetooth.hpp>
 #include <oled.hpp>
 
-PageDisplay bluetooth_info_page("Bluetooth", bluetooth_info_page_update,bluetooth_info_page_init, icon_bluetooth_bits);
+#include "bitmaps.hpp"
 
-void bluetooth_info_page_init()
-{
-}
+NewPageDisplay* bluetooth_info_page = new BluetoothInfoPage();
+
+void bluetooth_info_page_init() {}
 
 void bluetooth_info_page_update()
 {
     oled.clearBuffer();
-    oled.drawBox(0,0,128,12);
+    oled.drawBox(0, 0, 128, 12);
     oled.setDrawColor(0);
     oled.setFont(TEXT_NORMAL_FONT);
-    oled.drawStr(30,10,"Bluetooth");
+    oled.drawStr(30, 10, "Bluetooth");
     oled.setDrawColor(1);
 
-    oled.drawStr(10,30,String(Bluetooth::device_connected ? "Connected" : "Disconnected").c_str());
+    oled.drawStr(10, 30, String(Bluetooth::device_connected ? "Connected" : "Disconnected").c_str());
 
     oled.sendBuffer();
 }
 
-void BluetoothInfoPage::update()
-{
-    bluetooth_info_page_update();
-}
-void BluetoothInfoPage::initialize()
-{
-    bluetooth_info_page_init();
-}
+void BluetoothInfoPage::update() const { bluetooth_info_page_update(); }
+void BluetoothInfoPage::initialize() const { bluetooth_info_page_init(); }
+std::string BluetoothInfoPage::get_name() const { return "Bluetooth"; }
+const unsigned char* BluetoothInfoPage::get_icon() const { return icon_bluetooth_bits; }

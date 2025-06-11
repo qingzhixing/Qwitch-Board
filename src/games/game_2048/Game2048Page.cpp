@@ -2,19 +2,21 @@
 // Created by qingzhixing on 2025/5/16.
 //
 
-#include <games/game_2048/game_2048_page.hpp>
+#include <Arduino.h>
+#include <Coord.hpp>
+#include <games/game_2048/Game2048Page.hpp>
+#include <games/game_2048/Game_2048.hpp>
 #include <interaction.hpp>
 #include <nvs_controller.hpp>
 #include <oled.hpp>
-#include <Coord.hpp>
-#include <Arduino.h>
-#include <games/game_2048/Game_2048.hpp>
 
 #include <keyboard.hpp>
 #include <page_controller.hpp>
+
+#include "bitmaps.hpp"
 #include "games/game_2048/game_2048_score_page.hpp"
 
-PageDisplay game_2048_page = PageDisplay("2048", game_2048_page_update, game_2048_page_init, icon_2048_bits);
+NewPageDisplay* game_2048_page = new Game2048Page();
 
 Game_2048 game_2048_instance{};
 
@@ -55,7 +57,7 @@ static void input_handler()
     {
         interaction.update_interaction_tick();
         // 显示分数
-        set_display_function(game_2048_score);
+        set_new_display_function(game_2048_score);
         return;
     }
     if (is_key_on_pressed(KEY_UP) || (is_key_pressing(KEY_UP) && interaction.can_interact()))
@@ -122,3 +124,11 @@ void game_2048_page_update()
         game_2048_instance.start_new_game();
     }
 }
+
+void Game2048Page::update() const { game_2048_page_update(); }
+
+void Game2048Page::initialize() const { game_2048_page_init(); }
+
+std::string Game2048Page::get_name() const { return "2048"; }
+
+const unsigned char* Game2048Page::get_icon() const { return icon_2048_bits; }

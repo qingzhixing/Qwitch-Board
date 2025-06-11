@@ -2,7 +2,7 @@
 #include <oled.hpp>
 #include "bitmaps.hpp"
 
-PageDisplay home_page = PageDisplay("Home Page", home_page_update, home_page_initialize, icon_home_bits);
+NewPageDisplay* home_page = new HomePage();
 
 static constexpr long bitmap_move_interval_ms = 100;
 static int move_direction_x = -1; // 1 for right, -1 for left
@@ -37,5 +37,7 @@ void home_page_update()
     }
 }
 
-void HomePage::update() { home_page_update(); }
-void HomePage::initialize() { home_page_initialize(); }
+void HomePage::update() const { home_page_update(); }
+void HomePage::initialize() const { home_page_initialize(); }
+std::string HomePage::get_name() const { return "Home Page"; }
+const unsigned char* HomePage::get_icon() const { return icon_home_bits; }

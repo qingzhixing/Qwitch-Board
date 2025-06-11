@@ -1,18 +1,20 @@
 #pragma once
 #ifndef LED_TEST_PAGE_HPP
 #define LED_TEST_PAGE_HPP
-#include <page_display.hpp>
+
 #include <NewPageDisplay.hpp>
 
-extern PageDisplay led_test_page;
+extern NewPageDisplay* led_test_page;
 
 void led_test_page_init();
 void led_test_page_update();
 
-class LedTestPage final : public NewPageDisplay
+class LEDTestPage final : public NewPageDisplay
 {
 public:
-    void update() override;
-    void initialize() override;
+    void update() const override;
+    void initialize() const override;
+    std::string get_name() const override;
+    const unsigned char* get_icon() const override;
 };
 #endif //! LED_TEST_PAGE_HPP

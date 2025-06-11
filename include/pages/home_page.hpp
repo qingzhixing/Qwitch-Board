@@ -2,11 +2,9 @@
 #ifndef HOME_PAGE_HPP
 #define HOME_PAGE_HPP
 
-#include <page_display.hpp>
-
 #include <NewPageDisplay.hpp>
 
-extern PageDisplay home_page;
+extern NewPageDisplay* home_page;
 
 // Home Page
 void home_page_update();
@@ -15,8 +13,10 @@ void home_page_initialize();
 class HomePage final: public NewPageDisplay
 {
 public:
-    void update() override;
-    void initialize() override;
+    void update() const override;
+    void initialize() const override;
+    std::string get_name() const override;
+    const unsigned char* get_icon() const override;
 };
 
 #endif //! HOME_PAGE_HPP

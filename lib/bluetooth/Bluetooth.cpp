@@ -27,8 +27,8 @@ void Bluetooth::init()
     pServer = BLEDevice::createServer();
 
     const auto callbacks = new BoardServerCallbacks();
-    callbacks->connection_hook = []() { device_connected = true; };
-    callbacks->disconnection_hook = []() { device_connected = false; };
+    callbacks->connection_hook = [] { device_connected = true; };
+    callbacks->disconnection_hook = [] { device_connected = false; };
 
     pServer->setCallbacks(callbacks);
 

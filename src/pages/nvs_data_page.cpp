@@ -6,7 +6,9 @@
 #include <nvs_controller.hpp>
 #include <oled.hpp>
 
-PageDisplay nvs_data_page = PageDisplay("NVS Data", nvs_data_page_update, nvs_data_page_init, icon_camera_bits);
+#include "bitmaps.hpp"
+
+NewPageDisplay* nvs_data_page = new NVSDataPage();
 
 static short reboot_time = 0;
 static short keypress_UP = 0;
@@ -60,5 +62,7 @@ void nvs_data_page_update()
     display_data();
 }
 
-void NVSDataPage::update() { nvs_data_page_update(); }
-void NVSDataPage::initialize() { nvs_data_page_init(); }
+void NVSDataPage::update() const { nvs_data_page_update(); }
+void NVSDataPage::initialize() const { nvs_data_page_init(); }
+std::string NVSDataPage::get_name() const { return "NVS Data"; }
+const unsigned char* NVSDataPage::get_icon() const { return icon_database_bits; }

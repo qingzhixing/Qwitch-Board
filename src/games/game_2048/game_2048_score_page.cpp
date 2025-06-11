@@ -3,7 +3,7 @@
 //
 #include <games/game_2048/game_2048_score_page.hpp>
 
-#include <games/game_2048/game_2048_page.hpp>
+#include <games/game_2048/Game2048Page.hpp>
 #include <interaction.hpp>
 #include <keyboard.hpp>
 #include <oled.hpp>
@@ -11,10 +11,7 @@
 
 static Interaction interaction(300);
 
-PageDisplay game_2048_score{
-    .function = game_2048_score_page_update,
-    .initialize_function = game_2048_score_page_init,
-};
+NewPageDisplay* game_2048_score = new Game2048ScorePage();
 void game_2048_score_page_init()
 {
     interaction.update_interaction_tick();
@@ -28,9 +25,12 @@ void game_2048_score_page_init()
 }
 void game_2048_score_page_update()
 {
-    if (is_key_on_pressed(KEY_A)||(is_key_pressing(KEY_A)&& interaction.can_interact()))
+    if (is_key_on_pressed(KEY_A) || (is_key_pressing(KEY_A) && interaction.can_interact()))
     {
         interaction.update_interaction_tick();
-        set_display_function(game_2048_page);
+        set_new_display_function(game_2048_page);
     }
 }
+
+void Game2048ScorePage::update() const { game_2048_score_page_update(); }
+void Game2048ScorePage::initialize() const { game_2048_score_page_init(); }
