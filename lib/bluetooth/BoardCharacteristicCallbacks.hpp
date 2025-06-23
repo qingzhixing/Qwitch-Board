@@ -10,9 +10,15 @@
 class BoardCharacteristicCallbacks final : public BLECharacteristicCallbacks
 {
 public:
-    void onRead(BLECharacteristic* pCharacteristic) override { Serial.println("Read request"); };
-    void onWrite(BLECharacteristic* pCharacteristic) override { Serial.println("Write request"); };
-    void onNotify(BLECharacteristic* pCharacteristic) override { Serial.println("On Notify"); };
+    void onRead(BLECharacteristic* pCharacteristic) override {
+        // Serial.println("Read request");
+    };
+    void onWrite(BLECharacteristic* pCharacteristic) override {
+        // Serial.println("Write request");
+    };
+    void onNotify(BLECharacteristic* pCharacteristic) override {
+        // Serial.println("On Notify");
+    };
 };
 
 

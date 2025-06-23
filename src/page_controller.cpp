@@ -36,7 +36,11 @@ void page_controller_init()
     register_new_page_display(bluetooth_info_page);
 
 }
-void set_new_display_function(const NewPageDisplay* new_page_display) { new_current_page = new_page_display; }
+void set_new_display_function(const NewPageDisplay* new_page_display)
+{
+    new_current_page = new_page_display;
+    initialized = false;
+}
 
 void display_one_frame()
 {

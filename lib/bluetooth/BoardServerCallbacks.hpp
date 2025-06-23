@@ -12,9 +12,11 @@ class BoardServerCallbacks final : public BLEServerCallbacks
 {
 public:
     typedef void (*hook_t)();
+
 public:
     hook_t connection_hook = nullptr;
     hook_t disconnection_hook = nullptr;
+
 public:
     void onConnect(BLEServer* pServer) override
     {
@@ -23,7 +25,7 @@ public:
             connection_hook();
         }
         // 打印消息并打印设备名称
-        Serial.println("设备接入Qwitch Board, 设备ID: " + String(pServer->getConnId()) + "\n");
+        // Serial.println("设备接入Qwitch Board, 设备ID: " + String(pServer->getConnId()) + "\n");
     };
     void onDisconnect(BLEServer* pServer) override
     {
@@ -32,7 +34,7 @@ public:
             disconnection_hook();
         }
         // 打印消息并打印设备名称
-        Serial.println("设备断开Qwitch Board, 设备ID: " + String(pServer->getConnId()) + "\n");
+        // Serial.println("设备断开Qwitch Board, 设备ID: " + String(pServer->getConnId()) + "\n");
         // 重新广播
         pServer->startAdvertising();
     };
